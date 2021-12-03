@@ -19,6 +19,8 @@ public class Exam0320 {
     //증명
     //- age1의 값을 변경한다.
     age1 = 30;
+    age2 = 40;
+     age2 = age1;
     
     System.out.println(age1);
     System.out.println(age2);

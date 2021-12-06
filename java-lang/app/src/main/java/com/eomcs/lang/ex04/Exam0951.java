@@ -18,7 +18,7 @@ public class Exam0951 {
     char c = "가".charAt(0);
 
 
-    
+
 
     System.out.println(b);
     System.out.println(s);

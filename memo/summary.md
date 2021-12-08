@@ -222,4 +222,43 @@
 - 서버에 데이터를 요청
   - XMLHttpRequest : XML은 텍스트 데이터 형식으로, 인터넷에 연결된 시스템끼리 데이터를 쉽게 주고 받을 수 있게 하여 HTML의 한계를 극복할 목적으로 만들어졌다. 
   - var xmlHttp = new XMLHttpRequest(); 자바스크립트에서 XMLHttpRequest객체를 생성.
-   
+
+# 12월08일
+  
+- 기본 연산 단위
+        
+         byte x = 5, y = 6, z;
+         z = x; // OK!
+         z = y; // OK!
+         but z = x + y -> 오류
+         Java에서 연산의 기본 단위는 int(4byte)이기 때문에
+         x + y의 연산결과 또한 4byte메모리이다. byte는 1byte이고 x + y의 연산결과는 4byte이기 때문에 범위를 초과해서 에러가 발생한다.
+      
+   결론 : 다른 타입과 연산을 수행할 때는 
+  내부적으로 같은 타입으로 맞춘 다음에 실행한다(암시적 형변환)
+  -  => byte + byte = int
+     => short + short = int
+     => byte + short = int         
+
+  - 연산의 결과
+    - 같은 타입의 연산결과 : int의 최대범위 약 21억 + 21을 연산하면 int의 최대범위를 초과하기 때문에 원하는 결과값을 얻을 수 없다.
+    - 그러면 long타입에는 담겨질까? 아니다 연산의 결과값을 long타입 변수에 담기 전에 이미 결과값이 잘못된 연산 결과값이기 때문에,  long타입 변수에도 잘못된 결과가 담기게 된다.
+
+            ex) 
+            int x = Integer.MAX_VALUE;
+            int y = Integer.MAX_VALUE;
+            int r = x + y 
+            System.out.println(r1)
+
+            long r2 = x + y
+            System.out.println(r2)
+
+       ![](./images/2021-12-08-23-30-30.png)
+
+       두 결과값 모두 -2로 잘못된 결과가 출력된다.
+      
+           r2 = (long)x + (long)y;
+          System.out.println(r2);
+
+      ![](./images/2021-12-08-23-31-51.png)
+      형변환을 해주어야 옳은 결과가 출력된다.

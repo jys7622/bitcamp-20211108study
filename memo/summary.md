@@ -1,3 +1,13 @@
+# 마크다운 단축키
+굵은 글씨 ( ctrl + B )
+글씨 기울기 ( ctrl + I )
+링크 ( ctrl + L )
+이미지 넣기 ( ctrl + shift + L )
+코드 블럭 생성/삭제 ( ctrl + M, ctrl + C )
+인라인 코드 블럭 생성/삭제 ( ctrl + M, ctrl + I )
+블릿 생성/삭제 ( ctrl + M, ctrl + B )
+리스트 생성/삭제 ( ctrl + M, ctrl + 1 )
+체크박스 생성/삭제 ( ctrl + M, ctrl + X )
 # Spring boot란
 - 엔터프라이즈 어플리케이션 개발을 용이하게 해주는 Spring framework의 복잡한 초기 설정없이 바로 개발에 들어갈 수 있게 해주는 프레임워크이다. 
 - Spring boot는 관련 라이브러리를 일일이 추가할 필요 없이 spring-boot-starter-web을 통해 손쉽게 받아올 수 있다. 
@@ -262,3 +272,53 @@
 
       ![](./images/2021-12-08-23-31-51.png)
       형변환을 해주어야 옳은 결과가 출력된다.
+# 12월09일
+---
+- **증감 연산자**
+  - *후위 연산자(post-fix)*
+    - int a = 100;
+      a++
+      System.out.println(a);
+      후위 연산자는 임시 메모리를 생성하여 현재 변수의 값을 저장한다. -> int temp = a;
+      그후 증감 연산을 실행한다 -> a = a+1;
+      System.out.println에는 int temp의 값 100이 들어가게 된다.
+- *조건 연산자(삼항 연산자)*
+  - 조건() ? 표현식1 :표현식 2
+    - 조건이 참일 때 표현식 1을 실행, 거짓일 때 표현식 2를 실행. 
+    - 
+- printf 의 출력 서식
+  |사용법|서식|
+  |:-----:|:-----:|
+  |%d|정수형|
+  |%f|실수형|
+  |%s|문자형|
+  |%c|문자열|
+  |%n|줄바꿈|
+
+- **흐름제어문**
+  - if 조건문
+    - if문에 여러 문장을 묶을 때
+     ```java
+     int age = 17;
+     if (age > 19)
+      System.out.println("성인이다"); 
+      //괄호 없이 여러 문장을 작성하게되면 첫 번째 문장만 if문에 속하게된다
+      System.out.println("군대에간다");
+      System.out.println("노인이다");
+      System.out.println("청소년이다");
+      ```
+
+    - if문의 조건은 무조건 boolean 데이터만 올 수 있다.
+      - true, false <, >, ==. 
+        ex) if (a == 100), if( a = 100) ->불가능
+  - switch case
+    ```java
+    switch(값){
+      case 조건 :
+        실행문
+        break; //멈추는 포인트(break를 만나면 실행문 종료.)
+        default; (if else의 else와 같은역할)
+    }
+    ```
+    - switch의 값에는 4바이트 정수, 문자만 사용 가능하다.
+    - 부동소수점, boolean값 사용 불가능.

@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <title>변수 활용</title>
 </head>
-<body> 
+<body>
+
 <h1>배열 다루기</h1>
-<button type = "button" id ="x-btn" onclick="">배열 가져오기</button>  
+<button type="button" id="x-btn">배열 가져오기</button>
 <ul>
   <li>홍길동</li>
   <li>임꺽정</li>
@@ -14,13 +15,24 @@
 </ul>
 
 <script>
-var xBtn = document.getElementsByTagName("button");
+var xBtn = document.getElementById("x-btn");
 
-xBtn[0].onclick = function() {
-	console.log('눌렀음!3')
+xBtn.onclick = function() {  
+  console.log('눌렀음2!')
 };
 
 </script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

@@ -372,4 +372,79 @@
   ```
   
   
+# 12월15일
+  
+- Javascript의 배열에서 배열에 없는 데이터를 호출할 때 undefined를 리턴한다.
+ ```javascript
+ var arr = [1,2,3,4]
+ console.log(arr[5])
+ console.log(arr[2])
+ console.log(arr[1])
+ console.log(arr[0])
+ ```
+ ![](./images/2021-12-15-20-08-58.png)
+ - Javascript에서는 Java와달리 배열의 크기를 결정하지 않고 생성한다.
+  ```javascript
+  var arr = [];
+  ```
+  - 중간 인덱스번호를 건너뛰고 배열을 생성할 수 있다.
+  ```javascript
+  var arr = [1,2,3,4];
+  arr[7] = 8;
+  중간에 건너뛴 인덱스 번호는 empty로 출력이 되고,
+  건너뛴 인덱스 번호를 호출하게 되면 undefined를 리턴하게 된다.
+  ```
+- for in 반복문
+  - 객체의 반복을 위한 반복문.(배열의 반복에는 추천하지 않음)
+  ```javascript
+  obj.name = "홍길동"; 
+  obj.age = 20;
+  obj.tel = "1111-1111";
+  obj.working = true;
+  for (i in obj){
+    console.log(i(객체에 있는 프로퍼티 이름),obj[i](속성값))
+    console.log(obj)
+    프로퍼티명, 프로퍼티 값으로 각각의 객체 요소에 접근할 수 있으며
+    객체 자체 이름을 호출하여 하나의 객체로 출력할 수 도 있다.
+  }
+  ```
+  ![](./images/2021-12-15-20-35-34.png)
+  ![](./images/2021-12-15-20-37-23.png)
+
+- for of 반복문
+  - 배열의 반복을 위한 반복문
+
+- 배열의 값 분해
+    ```javascript
+    var arr = ["홍길동", "1234-5678", true, 20];
+    var [name, tell, working, age] = arr;
+    console.log(name,tell);
+    -> 홍길동 1234-5678 출력
+    동일한 인덱스 번호의 값이 출력된다.
+    홍길동 = arr[0], name = arr[0]
+    호출할 때 배열의 모든 값을 호출하지 않으면 배열[0]
+    부터 순서대로 호출된다.
+   var obj = { name : "홍길동" , tel :"1234-5678", working : true, age : 20};
+   var {name,tel,working,gender} = obj;
+   console.log(name) //홍길동
+   console.log(tel) // 1234-5678
+   console.log(worknig) // true
+   console.log(gender) // undefined
+   객체의 프로퍼티 명과 같은 변수를 선언해주어야 한다. 
+   프로퍼티명과 변수가 일치하지 않으면 
+   undefined가 된다.
+    ```
+  - const로 객체 선언
+    ```javascript
+    const v2 = new Object();
+    v2.name = "홍길동";
+    v2.age = 20;
+    v2.tel = "1111-2222";
+    v2.name ="임꺽정"
+    console.log(v2);
+    v2 = new Object // 에러발생
+    -> name = 임꺽정으로 바뀜
+    즉, const로 선언된 객체 내에서의 프로퍼티의 값은 
+    수정될 수 있지만, const로 선언된 객체의 주소는 변경 할 수 없다.
+    ```
   

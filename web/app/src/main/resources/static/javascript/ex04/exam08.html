@@ -20,9 +20,9 @@ var obj = {
 	math:80,
 	sum: () => this.kor + this.eng + this.math,
 	aver: () => this.sum() / 3,
-	test1: function() {console.log(this);},
-	test2() {console.log(this);},
-	test3: () => console.log(this)
+	test1: function() {console.log(this);},//일반함수
+	test2() {console.log(this);}, //익명함수
+	test3: () => console.log(this)//화살표함수
 }; 
 
 //console.log(obj.sum()); // this 즉 window 객체에 kor, eng, math라는 변수가 없기 때문에 

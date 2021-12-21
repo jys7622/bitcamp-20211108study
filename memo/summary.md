@@ -594,3 +594,32 @@ f2와 f3는 f1함수가 호출될 때 함께 생성된 클로저이기 때문에
     ![](./images/2021-12-16-15-59-27.png)
   - JSON.stringify()
     - 객체를 JSON문자열로 변환한다.
+
+# 12월 21일
+  ## 객체
+- 객체사용법
+  ```javascript
+  var obj1 = new Object(); // Object생성자로 초기화
+  obj1.name = "홍길동" or '홍길동' //따옴표, 쌍따옴표 둘다 사용가능
+  obj1.kor = 100;
+  obj1.eng = 100;
+  obj1.math = 100;
+  obj1.sum = function(
+    return this.kor + this.eng + this.math;
+  );
+  -> 객체에 함수를 포함시켜 작업을 수행할 수 있다.
+  -> javascript에서 같은 객체내의 프로퍼티에 접근(멤버를 가리킬 때)하려면 this를 붙여야 한다.(Java에서는 생략가능)
+  **주의** : 함수를 객체에 포함시킬 때 화살표 함수를 이용해도 되지만, 화살표함수는 같은 객체가 아닌 window객체를 가리키기 때문에 의도치 않은 결과가 나올 수 있다.
+  var obj = {
+	name: "홍길동", 
+	kor: 100, 
+	eng: 90, 
+	math:80,
+	sum: () => this.kor + this.eng + this.math,
+	aver: () => this.sum() / 3,
+	test1: function() {console.log(this);},//일반함수
+	test2() {console.log(this);}, //익명함수
+	test3: () => console.log(this) //화살표함수
+  }; 
+  ```
+  ![](./images/2021-12-21-22-23-26.png)

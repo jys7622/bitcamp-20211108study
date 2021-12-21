@@ -19,7 +19,7 @@ public class Contact {
   }
 
 
-  public void setName(String name) {
+  public void setname(String name) {
     this.name = name;
   }
 

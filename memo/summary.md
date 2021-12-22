@@ -626,3 +626,82 @@ f2와 f3는 f1함수가 호출될 때 함께 생성된 클로저이기 때문에
   }; 
   ```
   ![](./images/2021-12-21-22-23-26.png)
+
+# 12월 22일
+## DOM(Document Object Model)
+- document.getElementById
+  - id명으로 태그찾기
+  - Element 객체를 리턴한다.  
+  - document 객체는 웹브라우저에서 기본적으로 제공하는 객체이다.
+    - HTMLHeadingElement
+    - HTMLElement
+    - Element
+    - Node
+    - EventTarget
+    - Object 등이 document객체이다
+- document.getElementsByTagName
+  - 태그이름으로 태그찾기
+  -  HTMLCollection 객체를 리턴한다
+  -  HTMLCollection 객체는 배열이아니다. 하지만 배열처럼 length를가지고, 인덱스번호를 이용하여 태그를 찾아낼 수 있다.
+- getElementsByClassName("클래스명")
+  - HTMLCollection 객체를 리턴한다
+    - 클래스명으로 태그찾기
+- document.querySelector
+  - id, class, tag명으로 태그를 찾을 수 있다
+  - 하지만 동일한 태그가 여러개 있을 경우 제일 처음 찾은 태그만 리턴한다.
+  ```html
+  <h1 id="header1" class="g1">제목1</h1>
+  <h2 id="header2" class="g1">제목1.1</h2>
+  <h2 id="header3" class="g1 g3">제목1.2</h2>
+
+  <h1 id="header4" class="g2">제목2</h1>
+  <h2 id="header5" class="g2 g3 g1">제목2.1</h2>
+  <h2 id="header6" class="g2 g3">제목2.2</h2>
+  
+  document.querySelector("h2")
+  -> 제일 처음 마주치는 h2태그인 제목1.1을 리턴
+  ```
+  - document.querySelectorAll
+    - 그냥 querySelector와 기능은 같지만 처음 찾은 태그뿐 아니라 같은 id, class, tag명을 가진 모든 태그를 리턴한다.
+## css
+- 자식태그 설정하기
+  ```html 
+  부모태그 > 자식태그 {
+    적용할 스타일
+    ex)  <ul class="js">
+          <li>문법</li>
+          <li>실습</li>
+        </ul>
+    ul태그 밑 li 태그에 스타일
+    설정 할 때
+    .js > li {
+      border : 1px solid red;
+    }
+  }
+  ```
+- 다중 선택자에 스타일 적용하기
+  ```html
+  .js > li:hover, #java > li:hover 
+  {
+  background-color: thistle;
+  border: 1px double wheat; 
+  }
+   <ul class="js">
+      <li>문법</li>
+      <li>실습</li>
+   </ul>
+   <ul id = "java">
+      <li>Spring Boot</li>
+      <li>API연동</li>
+    </ul>
+  class js, id java에 li를 자식태그로
+  각각 설정.
+  .js,.java > li 는 적용안됨.
+  각각 나눠서 써줘야함 
+  .js > li:hover, #java > li:hover 
+  ```
+  - input[name^="office"] -> []안의 속성 값이 특정문자열로 "시작"
+  하는 경우
+  ex) 회사전화: < input type="tel" name="officetel" >
+  -  input[name$="fax"] -> []안의 속성 값이 특정문자열로 "끝"나는 경우
+  ex) 회사팩스: < input type="tel" name="officefax" >

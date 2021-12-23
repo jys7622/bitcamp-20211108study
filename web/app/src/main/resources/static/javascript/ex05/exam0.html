@@ -28,18 +28,28 @@ console.log(document.constructor.name);
 // HTMLDocument 생성자의 문서를 보라
 // 상속관계
 // Document() --> Node() --> EventTarget() --> Object()
-console.log(document.toString);
 
-// EventTarget() 생성자가 추가한 함수 존재 여부 확인
-console.log(document.addEventListener);
+console.log(document);
 
-// Node() 생성자가 추가한 함수 존재 여부 확인
-console.log(document.appendChild);
+console.log(Document.prototype);
+
+
+// Document의 함수
+console.log(document.createElement); // document --> Document.prototype
+
+// Node()의 함수
+console.log(document.appendChild); // document --> Document.prototype -->Node.prototype
+
+
+// EventTarget()의 함수
+console.log(document.addEventListener); //document --> Document.prototype --> Node.prototype --> EvnentTarget.prototype
+
+//Objec의 함수
+console.log(document.toString); //document --> Document.prototype --> Node.prototype --> EvnentTarget.prototype --> Object.prototype
 
 console.log(document.querySelector);
 console.log(document.querySelectorAll);
 console.log(document.getElementById);
-console.log(document.createElement);
 </script>
 </body>
 </html>

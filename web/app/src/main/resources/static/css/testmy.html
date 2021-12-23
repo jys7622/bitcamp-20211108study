@@ -23,12 +23,10 @@ margin: 0 auto;
   background-color: thistle;
   border: 1px double wheat;
 } */
-li:nth-child(2) {
-  background-color: greenyellow;
-}
 
   </style>
 <h1>강의계획</h1>
+<button id = "enrol-btn"type="button">수강신청</button>
 <div id = "containor">
   <div>
     <ul>
@@ -47,6 +45,12 @@ li:nth-child(2) {
     </ul>
   </div>  
 </div>
+<script>
+  var xEnrol = document.querySelector("#enrol-btn")
+xEnrol.addEventListener("click",function(){
+  location.href = "/css/testmy1.html"
+})
+</script>
 
 </body>
 </html>

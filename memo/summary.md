@@ -705,3 +705,46 @@ f2와 f3는 f1함수가 호출될 때 함께 생성된 클로저이기 때문에
   ex) 회사전화: < input type="tel" name="officetel" >
   -  input[name$="fax"] -> []안의 속성 값이 특정문자열로 "끝"나는 경우
   ex) 회사팩스: < input type="tel" name="officefax" >
+# 12월 23일
+## prototype
+- 함수 prototype에 소속되어있는 프로퍼티
+  ```javascript
+  //생성자 Scroe 정의
+  function Score(name, kor, eng, math) {
+  this.name = name;
+  this.kor = kor;
+  this.eng = eng;
+  this.math = math;
+
+  Score.prototype.sum = function(){
+    return this.kor + this.eng + this.math;
+    }
+  }
+  Score함수의 prototype객체에 소속되어있는 sum이라는
+   프로퍼티는 Score가 초기화시킨 객체 kor, eng, 
+   math를 사용할 수 있다.
+  var score1 = new Score("홍길동", 100, 90, 80)
+  console.log(score1.sum)
+  --> 270출력
+  ```
+  ```javascript
+  Score.sum = function() {
+    return this.kor + this.eng + this.math;
+  };
+    
+  var score1 = new Score("홍길동", 100, 90, 80)
+  console.log(score1.sum)
+  하지만 이렇게 prototype소속이 아닌 함수 자체에 
+  소속된 프로퍼티를 호출하게되면 오류가 발생한다.
+  함수소속 프로퍼티는 함수가 초기화한 객체를 사용할 
+  수 없기 때문이다
+  ```
+  ![](./images/2021-12-23-18-47-14.png)
+
+  - /* 첫 번째 대상을 지정한다 . 부모태그로부터 1번째*/
+  h1:nth-child(1)
+
+  - appendChild : 자식노드를 의미하며 다른 태그에 노드, 태그를 추가한다.
+  - createElement : 태그를 생성
+  - createTextNode : 단순 택스트 필드 생성
+  - 실무에서는 태그를 직접생성하기보다 innerHTML을이용하여 직접 노드, 태그를 추가함 

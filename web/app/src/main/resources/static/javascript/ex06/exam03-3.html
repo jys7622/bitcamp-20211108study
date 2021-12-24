@@ -21,15 +21,19 @@ var el = document.querySelectorAll(".b1");
 var el2 = document.querySelectorAll(".b2");
 
 var btnClick = function(e) {
-	alert("===> " + this.getAttribute("data-no"));
+	alert("===> " + this.getAttribute("data-no")); //this는 이벤트가 발생된 객체
 	alert("===> " + e.target.getAttribute("data-no"));
-	for (var e of el2) {
+	for (var e of el2) { // 위의 코드와 동일하다. 이 코드를 추천함.
 		e.style["background-color"] = "yellow";
+		e.style.backgroundColor = "yellow";
+    //객체로 사용할 때는 속성값을 이렇게 작성할 수도 있다.
+		e.style.color = "red";
+		e.style.border = "5px solid blue";
 	}
 };
 
 for (var e of el) {
-	  e.addEventListener("click", btnClick);
+	  e.addEventListener("click", btnClick); // btnClick만 쓰면 함수주소. btnClick()는 함수 호출
 }
 
 </script>

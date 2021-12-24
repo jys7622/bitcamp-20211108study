@@ -15,8 +15,8 @@
 // this가 가리키는 객체가 이벤트가 발생된 객체이다.
 //
 document.getElementById("btn1").addEventListener("click", function(e) {
-	console.log(this);
-
+	console.log(this); //this는 어떤 이벤트가 발생했는지 알 수 있다.
+  console.log("----------------");
 	// 이벤트가 발생한 객체의 속성 값 알아내기
 	// => 개발자가 임의로 추가한 속성인 경우 반드시 getAttribute()를 사용해야 한다.
 	console.log(this.getAttribute("data-no"));

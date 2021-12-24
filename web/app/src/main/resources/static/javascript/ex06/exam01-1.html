@@ -63,13 +63,13 @@ function f1() {
 }
 btn2.onclick = f1; // 함수의 주소를 객체 프로퍼티로 저장하는 순간 그 객체에 소속된다.
 */
-/*
-btn2.onclick = function() {
-    var str = "Hello2b!";
-    window.alert(str);
-    console.log(this); // 일반 함수에서 this는 그 함수가 소속된 객체이다.
-};
-*/
+
+// btn2.onclick = function() {
+//     var str = "Hello2b!";
+//     window.alert(str);
+//     console.log(this); // 일반 함수에서 this는 그 함수가 소속된 객체이다.
+// };
+
 
 
 btn2.onclick = () => {
@@ -85,22 +85,25 @@ btn2.onclick = () => {
 //    클릭 이벤트의 이름은 "onclick"이 아니라, "click"이다.
 //
 var btn3 = document.querySelector("#btn3");
-btn3.addEventListener("click", function() {
-  var str = "Hi1!!";
-  window.alert(str);
-  console.log(this); // this는 btn3 객체이다.
-});
-btn3.addEventListener("click", () => {
-  var str = "Hi2!!";
-  window.alert(str);
-  console.log(this); // this는 window 객체이다.
-});
+
 btn3.addEventListener("click", btn3Click);
 function btn3Click() {
   var str = "Hi3!!";
   window.alert(str);
   console.log(this); // this는 btn3 객체이다.
 } 
+
+btn3.addEventListener("click", function() {
+  var str = "Hi1!!";
+  window.alert(str);
+  console.log(this); // this는 btn3 객체이다.
+});
+
+btn3.addEventListener("click", () => {
+  var str = "Hi2!!";
+  window.alert(str);
+  console.log(this); // this는 window 객체이다.
+});
 
 </script>
 </body>

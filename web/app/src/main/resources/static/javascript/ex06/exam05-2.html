@@ -36,7 +36,7 @@ document.getElementById("btn1").addEventListener("click", function(e) {
 
 // "ohora" 이벤트를 처리하고 싶다면, 
 // 다음과 같이 이벤트 이름을 "ohora"로 지정하라!
-document.getElementById("btn2").addEventListener("ohora", function(e) {
+document.getElementById("btn2").addEventListener("ohora", function(e) { //클릭이벤트가 아니라 btn1을 클릭했을 때 ohora이벤트가 발생하도록 지정했고 그 정보를 btn2에 보냈기 때문에 btn2를 눌렀을 때는 작동하지 않는 것이다.
     console.log("버튼2...");
 });
 

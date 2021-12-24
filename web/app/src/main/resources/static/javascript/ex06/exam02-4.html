@@ -12,7 +12,8 @@
 "use strict"
 
 // addEventListener() 사용
-document.getElementById("btn1").addEventListener("click", function(e) {
+document.getElementById("btn1").addEventListener("click", function(e) { 
+  //function() 안에 e를 지정안하면 반복문을 통해 아규먼트에서 꺼내야한다.
 	console.log(
 		e.altKey, e.ctrlKey, e.button, 
 		e.offsetX, e.offsetY, 

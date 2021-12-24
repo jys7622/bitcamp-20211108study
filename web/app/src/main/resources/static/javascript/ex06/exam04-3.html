@@ -32,7 +32,7 @@ button {padding: 30px;}
 //
 document.getElementById("btn1").addEventListener("click", function(e) {
 	console.log("버튼1...1");
-	e.stopPropagation();
+	e.stopPropagation(); //현재 태그에 등록된 리스너까지는 모두 실행, 부모로 올라가는 bubble(현재태그의 상위 태그로 올라감)만 막는 기능
 });
 document.getElementById("btn1").addEventListener("click", function(e) {
     console.log("버튼1...2");

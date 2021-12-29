@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController 
 public class BoardController {
-  
+
   // Board 객체 목록을 저장할 메모리를 준비한다.
   ArrayList boardList = new ArrayList()
-;
+      ;
   @RequestMapping("/board/list")
   public Object list() {
     return ArrayList.toArray(boardList); 
@@ -60,10 +60,10 @@ public class BoardController {
     }
 
     ArrayList.remove(boardList, index);
-    return 1;
+    return 1; 
   }
 
-   int indexOf(String title) {
+  int indexOf(String title) {
     for (int i = 0; i < boardList.size; i++) {
       Board board =  (Board) boardList.list[i];
       if (board.title.equals(title)) { 

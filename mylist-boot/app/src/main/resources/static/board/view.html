@@ -3,6 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>게시글</title>
+  <style>
+    #x-viewcount {
+      display: none;
+    }
+    #x-createddate {
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
@@ -11,6 +19,8 @@
 <form>
 제목: <input id="x-title" type="text" ><br>
 내용: <textarea name="" id="x-content" cols="30" rows="10"></textarea><br>
+ <input id="x-viewcount" type="text" readonly><br>
+ <input id="x-createddate" type="text" readonly><br>
 
 
 
@@ -45,6 +55,10 @@
 
   var xTitle = document.querySelector("#x-title");
   var xContent = document.querySelector("#x-content");
+  var xViewCount = document.querySelector("#x-viewcount");
+  var xCreatedDate = document.querySelector("#x-createddate");
+
+  
   
   // 3) 서버에서 데이터 가져오기
   fetch(`/board/get?title=${title}`)
@@ -55,7 +69,8 @@
       // 4) 연락처 상세 정보를 화면에 출력한다.
       xTitle.value = board.title;
       xContent.value = board.content;
-      
+      xViewCount.value = board.viewCount;
+      xCreatedDate.value = board.createdDate
     });
 
   document.querySelector("#x-update-btn").onclick = function() {
@@ -64,7 +79,7 @@
       return;
     }
 
-    fetch(`/board/update?title=${xTitle.value}&content=${xContent.value}`)
+    fetch(`/board/update?title=${xTitle.value}&content=${xContent.value}&viewCount=${xViewCount.value}&createdDate=${xCreatedDate.value}`)
       .then(function(response) {
         return response.text();
       })

@@ -17,6 +17,8 @@ public class Exam0320 {
     Score s1;
 
     // 인스턴스를 만들어 그 주소를 레퍼런스에 저장한다.
+    // s1레퍼런스에 name, kor, eng, math, sum, aver가 생성됨
+    // 초기값은 레퍼런스 null, 정수 0, 부동소수점 0.0 , 논리 변수 false이다.
     s1 = new Score();
 
     // 새 인스턴스를 만들어 s1에 주소를 저장한다.

@@ -37,7 +37,7 @@ public class Exam0220 {
     arr[0] = new Score();
     arr[1] = new Score();
     arr[2] = new Score();
-
+    
     System.out.println(arr[0]);
     System.out.println(arr[1]);
     System.out.println(arr[2]);

@@ -748,3 +748,46 @@ f2와 f3는 f1함수가 호출될 때 함께 생성된 클로저이기 때문에
   - createElement : 태그를 생성
   - createTextNode : 단순 택스트 필드 생성
   - 실무에서는 태그를 직접생성하기보다 innerHTML을이용하여 직접 노드, 태그를 추가함 
+
+# 12월 30일
+- static 필드, static 메서드
+  - static으로 선언한 메서드는 static필드에 선언된 변수에 접근 가능.
+- non-static 필드, static 메서드
+  - static으로 선언한 메서드는 non-static필드(instance)에 선언된 변수에 접근 불가능
+- non-static 필드, non-static 메서드
+
+- 클래스로 객체 생성
+  ```java
+  class Score {
+    String name = "홍길동";
+    int kor = 80;
+    int eng = 80;
+    int math = 80;
+  }
+  Score s;
+  s.name  =>이렇게만 선언하면 null point exception발생
+  Score s; 는 사용할 메모리 주소를 저장하는 변수일 뿐
+  메모리를 사용할 수 있는 실제 변수는 아니다
+  Score s = new Score(); 를 통해  메모리를 사용할 준비를 한다.
+  ```
+- 레퍼런스 배열 생성.
+  ```java
+  public class Exam0221 {
+    public static void main(String args[]){
+      class Score{
+        String name;
+        int kor;
+        int eng
+        int math;
+      }
+      Score[] arr = new Score[3];
+      for (int i = 0; i < arr.length; i++){
+        arr[i] = new Score();
+      }
+    }
+  }
+  ```
+  Score s1 = new Score();
+  Score s2 = new Score();
+  s2 = s1; => s1의 주소는 s2의 저장되었다. 따라서 s1이 가리키는 객체는 s2도 가리킨다.
+  s1에 200번지 주소, s2에 300번지 주소가 들어갔다고 가정하면. s1의 주소를 s2에 저장했으니, s2가 가지고있던 기존의 300번지 주소를 s1의 200번지 주소가 덮어쓰게 된다. 따라서 s1의 주소도 200, s2의 주소도 200이 되었으니 300번지 주소는 garbage가 된다.

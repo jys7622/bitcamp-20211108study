@@ -21,7 +21,7 @@ public class Exam0210 {
 
     // 3) 설계도에 따라 메모리를 준비하고 그 주소를 각 레퍼런스에 저장한다.
     s1 = new Score();
-    s2 = new Score();
+    s2 = new Score(); //s2 = 레퍼런스 , new Score = 인스턴스
     s3 = new Score();
 
     // 4) 각각의 레퍼런스를 통해 인스턴스에 접근하여 특정 항목에 값을 넣는다.
@@ -52,6 +52,7 @@ public class Exam0210 {
     System.out.printf("%s: %d, %d, %d, %d, %.1f\n", s3.name, s3.kor, s3.eng, s3.math, s3.sum, s3.aver);
   }
 }
+
 
 // 수 십 개의 인스턴스를 저장한다면
 // 레퍼런스도 그 개수에 맞춰 선언해야 한다.

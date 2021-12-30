@@ -71,7 +71,10 @@ public class Exam0112 {
     //   => s 객체의 필드 값을 설정한다.
     //
     s.name = "홍길동"; // s에 저장된 주소로 찾아가서 name 항목에 값 저장
-    s.kor = 100; // s에 저장된 주소로 찾아가서 kor 항목에 값 저장
+    
+    // s가 가리키는 인스턴스에(s인스턴스)kor 필드에 100이란값을 넣어라
+    // s에 저장된 주소로 찾아가서 kor 항목에 값 저장. s는 주소를 가리키는 레퍼런스변수이다. 
+    s.kor = 100; 
     s.eng = 90;
     s.math = 80;
     s.sum = s.kor + s.eng + s.math;
@@ -129,7 +132,7 @@ public class Exam0112 {
 //   레퍼런스명.항목명 = 값;
 //   예) Score s = new Score();
 //       s.name = "홍길동";
-//
+//      Score s;만 선언하면 null point exception 에러 발생.
 
 
 

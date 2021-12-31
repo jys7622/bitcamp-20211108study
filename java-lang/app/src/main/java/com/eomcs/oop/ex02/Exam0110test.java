@@ -2,7 +2,7 @@ package com.eomcs.oop.ex02;
 
 // # 사용자 정의 데이터 타입
 //
-public class Exam0110 {
+public class Exam0110test {
 
   // ## 사용자 정의 데이터 타입 만들기
   // - 인스턴스 변수를 사용하여 학생의 성적 데이터를 담을 메모리를 설계한다.
@@ -18,6 +18,12 @@ public class Exam0110 {
     int math;
     int sum;
     float average;
+    
+    public static void calculate(Score score) {
+      score.sum = score.kor + score.eng + score.math;
+      score.average = score.sum / 3f;
+
+    }
   }
 
   public static void main(String[] args) {
@@ -33,9 +39,9 @@ public class Exam0110 {
     score.kor = 100;
     score.eng = 90;
     score.math = 85;
-    score.sum = score.kor + score.eng + score.math;
-    score.average = score.sum / 3f;
-
+    
+    Score.calculate(score);
+   
     System.out.printf("%s, %d, %d, %d, %d, %.1f\n", score.name, score.kor, score.eng, score.math,
         score.sum, score.average);
   }

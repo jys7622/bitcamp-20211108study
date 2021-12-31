@@ -8,6 +8,16 @@ public class Exam0270 {
   // - Calculator.java 파일로 분리한다.
 
   public static void main(String[] args) {
+    //스태틱 메서드는 인스턴스를 사용하지 않고 주어진 파라미터로 사용한다.
+    int  result = Integer.compare(121,120);
+    System.out.println(result);
+    
+    Integer i1 = new Integer(100);
+    Integer i2 = new Integer(120);
+   // 인스턴스 매서드는 인스턴스와 주어진 파라미터를 사용한다.
+    int result2 = i1.compare(100,200);
+    System.out.println(result2);
+    
     // 다음 두 개의 식을 분리하여 계산해 보자!
     // - 연산자 우선 순위를 고려하지 않고 순서대로 계산하라!
     // 식1) 2 + 3 - 1 * 7 / 3 = ?

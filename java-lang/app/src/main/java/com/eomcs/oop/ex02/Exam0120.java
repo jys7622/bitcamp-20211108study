@@ -42,7 +42,8 @@ public class Exam0120 {
     // score.average = score.sum / 3f;
     
     // 사용자 정의 데이터 타입의 값을 연산자를 사용하여 다뤄보자!
-    Score.calculate(s);
+    // 메서드는 연산자의 역할이다.
+    Score.calculate(s); 
 
     System.out.printf("%s, %d, %d, %d, %d, %.1f\n", s.name, s.kor, s.eng, s.math, s.sum, s.average);
   }

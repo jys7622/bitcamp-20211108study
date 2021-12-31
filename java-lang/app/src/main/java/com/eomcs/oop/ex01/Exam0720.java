@@ -4,6 +4,7 @@ package com.eomcs.oop.ex01;
 //
 // - import 명령은 package 명령 다음에 와야 한다.
 // - 클래스 선언 전에 와야 한다.
+// - import를 하게되면 컴파일러가 패키지명을 자동으로 찾는다.
 import com.eomcs.oop.ex01.sub.Y2;
 
 public class Exam0720 {

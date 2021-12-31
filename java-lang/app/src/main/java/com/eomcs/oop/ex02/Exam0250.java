@@ -5,9 +5,10 @@ package com.eomcs.oop.ex02;
 public class Exam0250 {
 
   static class Calculator {
-    // 인스턴스 변수
+    // 인스턴스 변수(=non-static 변수)
     // - 작업 결과를 개별적으로 관리하고 싶을 때 인스턴스 변수로 선언한다.
     // - 인스턴스 변수는 클래스가 로딩 될 때 만들어지지 않는다.
+    
     // - new 명령을 사용해서 만들어야 한다.
     // - 변수 선언 앞에 static이 붙지 않는다.
     int result = 0;
@@ -48,13 +49,15 @@ public class Exam0250 {
     // 두 개의 식을 동시에 계산하고 싶은가?
     // 그럴려면 계산 결과를 개별적으로 관리할 수 있어야 한다.
     // 다음과 같이 각 식의 계산 결과를 보관할 메모리를 준비한다.
+    
     Calculator c1 = new Calculator(); // 식1의 계산 결과를 보관할 메모리 준비
     Calculator c2 = new Calculator(); // 식2의 계산 결과를 보관할 메모리 준비
 
     // 계산을 수행할 때 계산 결과를 보관할 메모리를 전달한다.
     Calculator.plus(c1, 2); // + 2
     Calculator.plus(c2, 3); // + 3
-
+    // c1인스턴스의 result 변수에 3을더해
+    // 파라미터로 result변수가 있는 위치를 알려줘야한다
     Calculator.plus(c1, 3); // + 2 + 3
     Calculator.multiple(c2, 2); // + 3 * 2
 

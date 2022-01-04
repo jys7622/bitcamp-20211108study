@@ -20,6 +20,7 @@ public class Exam0430 {
       this.name = name;
     }
 
+    //여러개의 값을 받는 생성자
     Score(String name, int kor, int eng, int math) {
       System.out.println("Score(String,int,int,int) 호출!");
       this.name = name;

@@ -791,3 +791,156 @@ f2와 f3는 f1함수가 호출될 때 함께 생성된 클로저이기 때문에
   Score s2 = new Score();
   s2 = s1; => s1의 주소는 s2의 저장되었다. 따라서 s1이 가리키는 객체는 s2도 가리킨다.
   s1에 200번지 주소, s2에 300번지 주소가 들어갔다고 가정하면. s1의 주소를 s2에 저장했으니, s2가 가지고있던 기존의 300번지 주소를 s1의 200번지 주소가 덮어쓰게 된다. 따라서 s1의 주소도 200, s2의 주소도 200이 되었으니 300번지 주소는 garbage가 된다.
+
+# 22년 01월04일
+## 인스턴스 변수
+- static이 붙지 않는 변수.
+- new xxx(); 명령어를 통해 생성. 이 명렁어 실행 전에는 존재하지 않음.
+- heap영역에 생성된다.
+```java
+public class Exam0110{
+  static class A{
+    int v1;
+    boolean v2;
+    이 명령어들은 new 명령을 실행할 때 실행된다.
+  }
+  public static void main(String[] args){
+    A obj1 = new A();
+    A obj2 = new A();
+    A obj3 = new A();
+  - 위 명령어들을 통해 생성된 메모리를 인스턴스, 객체라고 칭한다.
+  - 이 인스턴스의 주소를 저장하는 obj1,2,3를 레퍼런스라 칭한다.
+  - 인스턴스가 생성될 때 만들어지는 v1, v2 변수를 인스턴스 변수라 칭한다.
+  obj1.v1 = 100;
+  obj2.v1 = 100;
+  obj3.v1 = 100;
+  - 인스턴스 변수(v1)는 레퍼런스(obj1,23)를 통해 사용할 수 있다.
+  }
+}
+```
+## 클래스 변수
+- 클래스 변수는 스태틱 변수라고도 한다.
+- 클래스를 로딩하는 순간 자동으로 생성된다.
+  - static 데이터타입 변수명 형식으로 사용
+    ex) static int v1;
+  ```java
+  public class Exam0130{
+    static class A{
+      static int v1;
+      static boolean v2;
+    }
+    public static void main(String[] args){
+      A.v1 = 100;
+      A.v2 = true;
+      - 인스턴스 변수와 다르게 new명령어로 초기화를 하지 않아도된다.
+      - 클래스를 사용하는 순간 클래스가 로딩되고, 클래스 변수가 
+      자동적으로 생성되기 때문이다.
+    }
+  }
+  ```
+  ```java
+  public class Exam0140{
+    static class A{
+      static int v1;
+     int v2;
+    }
+    public static void main(String[] args){
+      A.v1 = 100;
+      A p = new A();
+      p.v2 = 20;
+      A p2 = new A();
+      p2.v2 = 30;
+     - 클래스변수 v1은 클래스명으로 바로 사용할 수 있다.
+     - 하지만 인스턴스 변수 v2는 new명령어를 통해 인스턴스를 생성한 
+     후 사용해야 한다.
+     - 인스턴스 변수는 인스턴스를 만들 때 마다 생성된다.
+    }
+  }
+  ```
+
+ ```java
+  public class Exam0140{
+    static class Student{
+     - 모든 인스턴스가 공유하는 값을 저장할 때는 클래스 변수를 사용한다.
+      static int coount;
+     - 인스턴스마다 개별적으로 관리하는 변수는 인스턴스 변수로 사용한다. 
+      String name;
+      int age;
+    }
+    public static void main(String[] args){
+      Student.count = 0; // 스태틱 변수는 인스턴스 생성없이 클래스 이름으로 바로 사용
+      Student s1 = new Student(); // 인스턴트 변수는 new명령 실행한 후 사용해야 한다.
+      s1.name = "홍길동";
+      s1.age = "18"
+   
+    }
+  }
+  ```
+- 상수 변수의 선언
+```java
+import static com.eomcs.oop.ex03.Member.GUEST;
+import static com.eomcs.oop.ex03.Member.MEMBER;
+import static com.eomcs.oop.ex03.Member.MANAGER;
+public static final int GUEST = 0;
+public static final int MEMBER = 1;
+public static final int MANAGER = 2;
+- 변수 타입 앞에 final을 붙이고 상수임을 구분짓도록 변수 명은 대문자로 표기한다.
+- 스태틱 변수를 사용할 때 import를 통해 소속 클래스를 미리 밝혀두면
+클래스 이름 없이 스태틱 변수를 사용할 수 있다.
+```
+## 인스턴스 메서드 & 클래스 메서드
+- 인스턴스 메서드는 non-static 메서드라고도 칭한다.
+- static이 붙지 않은 메서드이다.
+- 인스턴스 주소가 이썽야만 호출할 수 있다.
+```java
+public class Exam0210 {
+  static class A{
+    static void m1() {
+      System.out.println("m1()"); // 클래스 메서드는 클래스 이름으로 호출할 수 있다.
+    }
+    void m2() {
+      System.out.println("m2()");
+    }
+  }
+  public static void main(String[] args){
+    A.m1(); // m1은 클래스 메서드이기 때문에 클래스이름 A로 호출가능
+    A.m2(); // 하지만 m2는 인스턴스 메서드 이기 때문에 에러발생
+    A obj1 = new A();를통해 인스턴스를 생성한 후 메서드 호출 가능
+    obj1.m2();
+  }
+}
+```
+- 클래스 메서드는 인스턴스 주소 없이 호출된다
+- 따라서 인스턴스 주소를 받는 내장 변수 this가 없다.
+```java
+public class Exam0220{
+  static class A{
+    int value;
+    static void m1(){
+      this.value = 100; // 에러 발생
+    }
+    void m2(){
+      // 인스턴스 메서드는 인스턴스 주소가 있어야 호출할 수 있다.
+      // 따라서 인스턴스 주소를 받는 내장변수 this가 있다.
+      this.value = 100; 
+    }
+    void m3(){
+      // 내장변수 this는 생략 가능하다.
+      value = 300;
+    }
+    void m4(int value){
+      // 로컬 변수(int value)이름이 인스턴스 이름과 같을 경우
+      // this를 붙이지 않으면 로컬변수를 가리킨다.
+      value = 400; // 로컬 변수
+      this.value = 500; // 인스턴스 변수
+    }
+    public static void main(String[] args){
+      // 결론 : 스태틱 메서드 m1은 인스턴스 주소 없이 클래스 이름만으로 호출가능
+      A.m1();
+     // 인스턴스 메서드 m2는 인스턴스를 생성한 후 인스턴스 주소로 호출 가능
+     A obj1 = new A();
+     obj1.m2()
+    }
+  }
+}
+```

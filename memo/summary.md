@@ -795,7 +795,7 @@ f2와 f3는 f1함수가 호출될 때 함께 생성된 클로저이기 때문에
 # 22년 01월04일
 ## 인스턴스 변수
 - static이 붙지 않는 변수.
-- new xxx(); 명령어를 통해 생성. 이 명렁어 실행 전에는 존재하지 않음.
+- new xxx(); 명령어를 통해 생성. 이 명령어 실행 전에는 존재하지 않음.
 - heap영역에 생성된다.
 ```java
 public class Exam0110{
@@ -944,3 +944,66 @@ public class Exam0220{
   }
 }
 ```
+- 인스턴스 변수를 사용하지 않고 파라미터 값을 받아 작업하는 경우 보통 클래스 메서드로 정의한다.
+``` java
+public static int abs(int value) {
+
+}
+```
+- 생성자 
+  - 클래스 이름과 같은 이름으로 메서드를 만든다.
+  - 생성자는 리턴타입을 정하지 않는다. 즉 값을 리턴하지 않는다.
+  - 생성자는 인스턴스를 만들 때 자동 호출된다.
+  - 생성자는 따로 만들지 않으면 자동으로 컴파일러에 의해 추가된다.
+  - 따라서 모든 클래스는 반드시 한 개 이상의 생성자를 가진다.
+  - 생성자의 용도는 보통 인스턴스를 만든후에 인스턴스를 초기화하는 용도로 쓰인다.
+  ```java
+  static class Score{
+    String name;
+    int kor;
+    int eng;
+    int math;
+    int sum;
+    int average;
+    
+    Score() {
+
+    }
+    Score(String name) {
+      System.out.println("Score(String)");
+      this.name = name;
+    }
+
+    Score(String name, int kor, int eng, int math)){ -> 생성자 Score
+      System.out.println("Score(String, int, int,int)");
+      this.name = name;
+      this.kor = kor;
+      this.eng = eng;
+      this.math = math;
+      this.compute();
+    }
+  }
+  public void compute() {
+    this.sum = this.kor + this.eng + this.math;
+    this.average = this.sum /3f;
+  }
+  public static void main(String[] args){
+    Score s0 = new Score(); -> 에러 발생
+    //Score 클래스에는 생성자를 따로 만들었기 때문에 기본 생성자 Score()가 존재하지 않는다.
+    // 따라서 생성자 파라미터 값을 주어야 한다.
+    Score s1 = new Score("홍길동", 100, 90, 77);
+
+    -> 생성자에서 이미 연산작업을 수행했기 때문에 compute()를 따로 호출할 필요가 없다.
+    이것이 생성자를 사용하는 이유이다.(코드가 간결해짐)
+    Score s2 = new Score("유관순");
+    -> 생성자가 여러개있다면 파라미터 값으로 어떤 생성자를 호출할 지 결정한다.
+  }
+  Score s1 = new Score();
+  - 기본 생성자 호출방법
+  - 생성자 호출 방법은 인스턴스를 생성하는 new 명령에서 호출할 생성자의 파라미터 값을 지정하면된다.
+  - 파라미터 값 지정없이 ()만 지정하면 기본 생성자를 호출하게 된다.
+  - Score s1 = new Score; -> 에러발생 
+  - 생성자를 꼭 지정해야 한다.
+  - s3.Score(); -> 에러발생
+  - 생성자는 따로 호출할 수 없다.
+  ```

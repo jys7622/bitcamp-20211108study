@@ -42,11 +42,11 @@ public class BoardController2 {
     if (index < 0 || index >= boardList.size()) {
       return 0;
     }
-    //  2)그래서 기존객체를 가져온다.
+    //  2)그래서 기존객체를 가져온다.arr = [{}, {}, {}] arr[1]= {title: hi}
     Board old = (Board) boardList.get(index);
     //  3)새로운 객체 조회수에 기존 조회수를 복사한다.
     board.setViewCount(old.getViewCount());
-    //  4)새로운 객체 날짜에 기존 조회수를 복사한다.
+    //  4)새로운 객체 날짜에 기존 날짜를 복사한다.
     board.setCreatedDate(old.getCreatedDate());
     // 1)기존객체인 index를 버리고 새객체인 board를 넣는것이기 때문에
     //  조회수, 날짜가 업데이트 되지 않는다.
@@ -60,7 +60,7 @@ public class BoardController2 {
     }
     return boardList.remove(index) == null ? 0 :1;
   }
-  
+
 }
 
 

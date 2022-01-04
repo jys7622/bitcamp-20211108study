@@ -33,7 +33,7 @@
   var qs = arr[1];
   console.log(qs);
 
-  // 2) 쿼리 스트링에서 email 값을 추출한다.
+  // 2) 쿼리 스트링에서 index 값을 추출한다.
   var params = new URLSearchParams(qs);
   var index = params.get("index");
 
@@ -51,6 +51,7 @@
   // 3) 서버에서 데이터 가져오기
   fetch(`/board2/get?index=${index}`)
     .then(function(response) {
+      console.log(response);
       return response.json();
     })
     .then(function(board2) {

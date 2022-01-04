@@ -60,7 +60,7 @@ public class BoardController {
     }
     return boardList.remove(index) == null ? 0 :1;
   }
-  
+
 }
 
 

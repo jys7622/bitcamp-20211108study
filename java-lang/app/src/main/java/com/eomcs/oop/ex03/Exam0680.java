@@ -1,4 +1,4 @@
-  // 스태틱 초기화 블록(static initializer) - 변수 초기화 문장(variable initializer)
+// 스태틱 초기화 블록(static initializer) - 변수 초기화 문장(variable initializer)
 package com.eomcs.oop.ex03;
 
 public class Exam0680 {
@@ -6,7 +6,7 @@ public class Exam0680 {
   public static class A {
 
     static int a = 100;
-    
+
 
     static {
       a = 200;
@@ -15,6 +15,7 @@ public class Exam0680 {
 
     static {
       b = 400;
+
     }
 
     static int b = 300;
@@ -35,17 +36,17 @@ public class Exam0680 {
       static {
         b = 400;
       }
-    
+
       static int b;
       static {
           b = 300;
       }
-      */
+     */
     // 2) 스태틱 블록을 한 개의 블록으로 합친다.
     /*
        static int a;
        static int b;
-       
+
        static {
          a = 100;
          a = 200;
@@ -54,12 +55,12 @@ public class Exam0680 {
          b = 300;
        }
        static
-       
-      */
+
+     */
     //  모든 스태틱 블록을 순서에 따라 한 스태틱 블록에 합친다.
     // - 스태틱 변수 선언문에서 초기화 문장을 분리하여 스태틱 블록의 첫 부분으로 옮긴다.
-    
-    
+
+
     // static int a;
     // static int b;
     // static {

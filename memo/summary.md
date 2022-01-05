@@ -814,7 +814,7 @@ public class Exam0110{
   obj1.v1 = 100;
   obj2.v1 = 100;
   obj3.v1 = 100;
-  - 인스턴스 변수(v1)는 레퍼런스(obj1,23)를 통해 사용할 수 있다.
+  - 인스턴스 변수(v1)는 레퍼런스(obj1,2,3)를 통해 사용할 수 있다.
   }
 }
 ```
@@ -1007,3 +1007,269 @@ public static int abs(int value) {
   - s3.Score(); -> 에러발생
   - 생성자는 따로 호출할 수 없다.
   ```
+
+# 22년 01월05일
+## 생성자
+- 다른 생성자를 호출하는 명령어를 만나면 호출된 생성자로 넘어가 작업을 수행한다
+```java
+public class Exam0440 {
+
+  static class Score {
+    String name;
+    int kor;
+    int eng;
+    int math;
+    int sum;
+    float average;
+
+    Score() {
+      // this()는 다른 생성자 호출을 의미
+      // this(문자열) -> 문자열을 받는 생성자를 호출 -> Score(String name) 생서자를 호출했다는 의미.
+      this("이름없음"); 
+      System.out.println("Score()");
+    }
+    Score(String name) {
+     // 위 생성자에서 호출했기 때문에 이 생성자로 넘어와 코드 실행
+     // this(name, 0, 0, 0) -> 문자열, int, int, int를 파라미터로 받는 생성자를 호출함
+      this(name, 0, 0, 0); 
+
+      System.out.println("Score(String)");
+    }
+    // 위 생성자에서 호출했기 때문에 이 생성자로 넘어와 코드 실행
+    // 다른 생성자를 호출하는 명령을 하지 않았기 때문에 System.out.println 명령 수행
+    Score(String name, int kor, int eng, int math) {
+      System.out.println("Score(String,int,int,int) 호출!");
+      this.name = name;
+      this.kor = kor;
+      this.eng = eng;
+      this.math = math;
+      this.compute();
+    }
+      public void compute() {
+      this.sum = this.kor + this.eng + this.math;
+      this.average = this.sum / 3f;
+    }
+  }
+
+  public static void main(String[] args) {
+
+    Score s1 = new Score(); 
+
+    System.out.println("--------------------------------");
+
+
+    Score s2 = new Score("유관순");
+    System.out.println("--------------------------------");
+
+    Score s3 = new Score("홍길동", 100, 90, 77);
+    System.out.println("--------------------------------");
+
+    System.out.printf("%s, %d, %d, %d, %d, %.1f\n", s1.name, s1.kor, s1.eng, s1.math, s1.sum,
+        s1.average);
+
+    System.out.printf("%s, %d, %d, %d, %d, %.1f\n", s2.name, s2.kor, s2.eng, s2.math, s2.sum,
+        s2.average);
+
+    System.out.printf("%s, %d, %d, %d, %d, %.1f\n", s3.name, s3.kor, s3.eng, s3.math, s3.sum,
+        s3.average);
+  }
+}
+-> "Score(String,int,int,int) 호출!" 출력
+-> compute() 메서드 호출했기 때문에 실행.
+-> 메서드 실행후 Score(String name)생성자로 돌아가  System.out.println("Score(String)"); 명령 실행
+-> Score() 생성자로 돌아가 System.out.println("Score()"); 명령 실행
+-> 생성자들의 모든 작업이 끝나면 main 메서드 호출
+-> Score s1 = new Score(); 생성자 호출 -> Score() 생성자 안에 있는 명령 실행
+-> System.out.println("--------------------------------"); 실행
+-> Score s2 = new Score("유관순"); 생성자 호출 -> Score(String name) 생성자에서  Score(String name, int, int, int)생성자를
+호출했기 때문에 그 생성자로 넘어가서 먼저 명령실행
+->  System.out.println("Score(String,int,int,int) 호출!");
+      this.name = name;
+      this.kor = kor;
+      this.eng = eng;
+      this.math = math;
+      this.compute();
+    } 안에있는 인스턴스를 초기화 , 함수도 호출
+-> 호출당한 생성자의 작업이 끝나면 다시 호출을 명령한 Score(String name) 생성자로 돌아가 작업실행
+-> System.out.println("Score(String)"); 출력
+-> System.out.println("--------------------------------"); 실행
+-> Score s3 = new Score("홍길동", 100, 90, 77); 생성자 호출
+->  System.out.println("Score(String,int,int,int) 호출!");
+      this.name = name;
+      this.kor = kor;
+      this.eng = eng;
+      this.math = math;
+      this.compute();
+    순서대로 진행
+->  System.out.println("--------------------------------"); 실행
+->  System.out.printf("%s, %d, %d, %d, %d, %.1f\n", s1.name, s1.kor, s1.eng, s1.math, s1.sum,
+        s1.average);
+
+    System.out.printf("%s, %d, %d, %d, %d, %.1f\n", s2.name, s2.kor, s2.eng, s2.math, s2.sum,
+        s2.average);
+
+    System.out.printf("%s, %d, %d, %d, %d, %.1f\n", s3.name, s3.kor, s3.eng, s3.math, s3.sum,
+        s3.average);
+  순서대로 진행
+```
+## 변수 자동 초기화
+- 스태틱 변수(클래스 변수)는 스태틱 클래스가 로딩될 때 Method Area에 생성된다
+- 스태틱 클래스는 한번 로딩되면 중복 로딩되지 않는다.
+- 스태틱 변수는 생성되는 순간 byte, short, int, char, float, double 은 0으로, boolean은 false로, 레퍼런스 변수는 null로 즉, 모두 0으로 초기화 된다.
+- 로컬 변수는 자동으로 초기화되지 않기 때문에  초기화시켜야 한다. 
+```java
+int x;
+System.out.println(x); --> 에러발생
+int x = 0; --> 이렇게 초기화 한 후에 사용해야 한다(꼭 0으로 초기화할 필요는 없음)
+System.out.println(x);
+```
+- 인스턴스 필드(변수)도 스태틱 변수와 마찬가지로 생성되는 즉시 0으로 초기화된다. 인스턴스 필드(변수)는 Heap 메모리에 생성된다.
+- 하지만 인스턴스 필드(변수)는 사용하기 위해서는 new명령을 통해 인스턴스를 생성해야 한다.
+- 초기화는 값을 한 번이라도 저장하는 것을 의미한다.
+
+## 스태틱 초기화 블록 - 레퍼런스 선언
+- 스태틱 클래스가 로딩될 때 Method Area에 스태틱 필드(변수)를 만들고, 스태틱 블록을 실행한다.
+- import javax.swing.text.DefaultEditorKit.InsertContentAction; 이렇게 import를 통해서도 클래스를 로딩시킬 수 있다.
+- import한 후 Class.forName("com.eomcs.oop.ex03.Exam0650$A");이렇게 패키지 명을 포함해 클래스 이름을 지정해야 한다.
+- 스태틱 클래스는 스태틱 필드를 사용하거나, 스태틱 메서드를 호출할 때, 그리고 인스턴스를 생성할 때(new 명령어 사용할 때) 로딩된다.
+- 스태틱 블록은 한번만 실행된다
+```java
+public class Exam0640 {
+
+  public static class A {
+   
+    static {
+      System.out.println("Static{} 11111");
+    }
+    static int a;
+
+    static void m() {}
+
+    static {
+      System.out.println("Static{} 22222");
+    }
+  }
+
+  public static void main(String[] args) throws Exception {
+
+    new A();
+    System.out.println("-------------------------------");
+
+    new A();
+    System.out.println("-------------------------------");
+
+    new A();
+    System.out.println("-------------------------------");
+
+    System.out.println("종료!");
+  }
+}
+-> 첫번 째 new A(); 단계에서 클래스가 로딩되어 스태틱 블록실행
+(스태틱 블록은 위치에 상관없이 작성된 순서대로 실행된다. 스태틱 블록은 한 번만 실행된다.)
+-> 나머지 new A(); 단계에서는 스태틱 블록이 실행되지 않는다.
+```
+```java 
+public class Exam0660 {
+
+  public static class A {
+    static int a;
+    
+    static {
+      // 클래스가 A.a = 100; 단계에서 로딩되었으므로 스태틱 블록실행
+      // 스태틱 블록은 작성된 순서대로 실행된다.
+      int x = 300;
+      System.out.println(x);
+    }
+    static void m() {}
+
+    static {
+      int x = 200;
+      System.out.println(x);
+      System.out.println("Static{} 11111");
+    }
+
+    static {
+      String x = "Hello";
+      System.out.println(x);
+      System.out.println("Static{} 22222");
+    }
+  }
+
+  public static void main(String[] args) throws Exception {
+
+     A obj; 
+     // 단순 레퍼런스 선언 단계에서는 클래스가 로딩되지 않는다
+     // 따라서 println작업이 먼저 수행
+    System.out.println("------------------------------");
+    // 클래스 멤버(클래스 변수, 메서드)사용시 클래스 로딩
+    // 로딩후 스태틱 블록 실행. A.a 이후 작업들은 클래스는 중복으로 로딩되지 않으므로 의미가 없다.
+    A.a = 100;
+    A.m();
+    new A();
+    Class.forName("com.eomcs.oop.ex03.Exam0660$A");
+    System.out.println("------");
+    new A(); 
+  }
+}
+
+```
+-> 최종적으로 아래의 결과물이 출력.
+![](images/2022-01-05-23-56-42.png)
+
+## 스태틱 초기화 블록 - 변수 초기화 문장
+- 일반적으로 사용하는 초기화 문장 static int a = 100; 이러한 문장은
+```java
+static int a;
+static {
+  a = 100;
+}
+이러한 코드로 바뀌게 된다.
+```
+- 스태틱 블록은 일반적으로 클래스 멤버를 사용하기 전에 유효한 값으로 초기화시키는 역할을 한다.
+- 스태틱 블록 실행 과정
+![](images/2022-01-06-00-23-47.png)
+
+## 인스턴스 초기화 블록
+- 인스턴스 블록은 여러 생성자에 공통적으로 존재해야할 코드가 있을 때 사용한다.
+```java
+{
+   a = 100; 
+   System.out.println("Hello!");
+}
+인스턴스 블록의 기본 구조이다. 인스턴스 블록은 생성자가 존재 하지 않을 때 
+public A(){
+  a = 100; 
+   System.out.println("Hello!");
+}
+이런식으로 기본 생성자를 만든 후 인스턴스 블록 내의 코드를 기본 생성자에 옮긴 후 사라지게 된다.
+public A2(){
+  a = 300;
+}
+기존 생성자가 있다면, 기존 생성자 맨 처음에 코드를 삽입한 후 사라진다.
+ public A2(){
+  a = 100; 
+   System.out.println("Hello!");
+  a = 300;
+}
+-> 결국 a 값은 300이다.
+여러개의 인스턴스 블록이 존재하는 경우, 작성된 순서대로 생성자의 맨앞에 위치하게된다
+ {
+ a = 500;
+}
+
+{
+  a = 1000;
+}
+->
+ public A2(){
+  a = 500; 
+  a = 1000;
+  a = 100; 
+   System.out.println("Hello!");
+  a = 300;
+}
+-> 최종 값은 동일하게 300.
+```
+## 인스턴스 필드(변수) 초기화 문장
+- 인스턴스 블록과 마찬가지로 생성자의 맨 앞 부분에 삽입된다.
+- 블록과 필드가 동시에 존재한다면 종류 구분하지 않고 작성된 순서대로 생성자 맨앞 부분에 삽입된다.

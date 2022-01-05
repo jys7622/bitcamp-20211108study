@@ -23,11 +23,17 @@ public class Exam0720 {
       a = 200;
       System.out.println("A() 생성자 호출");
     }
-    
+
     {
       a = 500;
       System.out.println("인스턴스 초기화 블록 실행!");
     }
+    {
+      a = 10000;
+      System.out.println("누가찍히냐");
+
+    }
+
   }
 
   public static void main(String[] args) {

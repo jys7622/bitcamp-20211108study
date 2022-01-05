@@ -13,16 +13,17 @@ public class Exam0440 {
 
     Score() {
       // 다른 생성자를 호출할 때는 this()를 사용한다.
-      // 단, 생성자의 첫 문장으로 와야 한다.
-      this("이름없음"); // Score(String) 생성자 호출
-
+      /* 단, 생성자의 첫 문장으로 와야 한다. */
+      this("이름없음"); // Score(String) 생성자 호출. this()는 다른 생성자를 의미.문자열을 받는 생성자를 호출함. 
+      // 생성자 호출 명령만나면 호출된 생성자로넘어간다. -> 26번째줄
+      
       System.out.println("Score()");
     }
 
     Score(String name) {
       // 다른 생성자를 호출할 때는 this()를 사용한다.
       // 단, 생성자의 첫 문장으로 와야 한다.
-      this(name, 0, 0, 0); // Score(String, int, int, int) 생성자 호출
+      this(name, 0, 0, 0); // Score(String, int, int, int) 생성자 호출 ->32~ 37 실행. 37번째줄 일반 메서드 40번째 줄로 넘어간다.
 
       System.out.println("Score(String)");
     }
@@ -37,6 +38,8 @@ public class Exam0440 {
     }
 
     public void compute() {
+      //this("오호라"); -> 에러발생. 일반 메서드에서 생성자를 호출할 수 없다!(생성자에서만 다른 생성자를 호출할 수 있다).
+      //이 메서드 실행끝나면 32번째줄로 넘어가서 출력,28번째줄 출력 20번째줄 출력의 순서로 진행.
       this.sum = this.kor + this.eng + this.math;
       this.average = this.sum / 3f;
     }
@@ -45,7 +48,7 @@ public class Exam0440 {
   public static void main(String[] args) {
 
     // 생성자가 여러 개 일 때 파라미터에 전달하는 값으로 구분한다.
-    Score s1 = new Score();
+    Score s1 = new Score(); //기본 생성자 호출 14번줄로가서 다른 생성자 호출 명령만나면 다른 생성자로 넘어간다
 
     // 인스턴스 생성 후에 나중에 따로 생성자를 호출할 수 없다!
     // s1.Score("홍길동", 100, 90, 77); // 컴파일 오류!

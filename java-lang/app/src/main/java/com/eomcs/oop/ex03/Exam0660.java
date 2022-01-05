@@ -5,6 +5,10 @@ public class Exam0660 {
 
   public static class A {
     static int a;
+    static {
+      int x = 300;
+      System.out.println(x);
+    }
     static void m() {}
 
     // 클래스가 로딩될 때 스태틱 초기화 블록은 실행된다.
@@ -12,10 +16,14 @@ public class Exam0660 {
     // - 바이트코드(Exam0660$A.class)를 확인해 보라.
     //
     static {
+      int x = 200;
+      System.out.println(x);
       System.out.println("Static{} 11111");
     }
 
     static {
+      String x = "Hello";
+      System.out.println(x);
       System.out.println("Static{} 22222");
     }
   }
@@ -24,9 +32,9 @@ public class Exam0660 {
 
     // 클래스가 로딩되는 경우
     // 1) 클래스 멤버(변수와 메서드)를 사용할 때 클래스가 로딩되어 있지 않다면,
-    //    A.a = 100;
-
-    //    A.m();
+      // A.a = 100;
+      // 이미 A.a를 통해서 로딩되었기 때문에 중복 로딩할 수 없다.
+      // A.m();
 
     // 2) 해당 클래스의 인스턴스를 생성할 때 클래스가 로딩되어 있지 않다면,
     //    new A();
@@ -40,7 +48,7 @@ public class Exam0660 {
     //
 
     // 레퍼런스를 선언할 때는 클래스가 로딩되지 않는다.
-    // A obj;
+     A obj;
     System.out.println("------------------------------");
 
     // 클래스는 중복 로딩되지 않는다.

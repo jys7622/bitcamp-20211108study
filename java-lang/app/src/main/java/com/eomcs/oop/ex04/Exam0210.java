@@ -22,7 +22,7 @@ public class Exam0210 {
     System.out.println(s1); // 기존 인스턴스의 값은 변경하지 않는다.
     System.out.println(s2); // 새로 문자열을 만든다.
 
-    // 두 인스턴스에 들어 있는 문자열이 같은 지 비교할 때 
+    // 두 인스턴스에 들어 있는 문자열이 같은 지 비교할 때  //https://coding-factory.tistory.com/536참고하기
     System.out.println(s1.equals("aaa")); // false
     System.out.println(s1.equals("Hello")); // true
     System.out.println(s1 == "Hello"); // false

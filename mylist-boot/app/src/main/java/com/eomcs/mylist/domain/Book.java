@@ -1,7 +1,10 @@
 package com.eomcs.mylist.domain;
-// 다른 패키지에서도 이 클래스 쓰게하려면 public붙여서 공개함.
 
 import java.sql.Date;
+
+// 다른 패키지에서도 이 클래스 쓰게하려면 public붙여서 공개함.
+
+
 
 public class Book {
   String title; // 제목
@@ -11,8 +14,8 @@ public class Book {
   int price; // 가격
   Date readDate; // 읽은 날짜
   String feed; // 독후감
-  
-  
+
+
   public String getTitle() {
     return title;
   }
@@ -55,5 +58,10 @@ public class Book {
   public void setFeed(String feed) {
     this.feed = feed;
   }
- 
+  @Override
+  public String toString() {
+    return "Book [title=" + title + ", author=" + author + ", press=" + press + ", page=" + page
+        + ", price=" + price + ", readDate=" + readDate + ", feed=" + feed + "]";
+  }
+
 }

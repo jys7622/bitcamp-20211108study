@@ -29,12 +29,14 @@
       var xDate = document.querySelector('#x-date');
       var xFeed = document.querySelector('#x-feed');
 
+     
+
       document.querySelector('#x-add-btn').onclick = function () {
         fetch(
           `/book/add?title=${xTitle.value}&Author=${xAuthor.value}&Press=${xPress.value}&Page=${xPage.value}&price=${xPrice.value}&readDate=${xDate.value}&feed=${xFeed.value}`
         )
           .then(function (response) {
-            return response.text();
+            return response.json();
           })
           .then(function (text) {
             console.log(text);

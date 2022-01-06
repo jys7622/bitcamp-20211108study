@@ -20,8 +20,10 @@ public class BookController {
 
   @RequestMapping("/book/add")
   public Object add(Book book) {
-
+    // book.setReadDate(LocalDateTime(book.readDate));
+    System.out.println(book.getReadDate());
     bookList.add(book);
+
     return bookList.size();
   }
 
@@ -47,9 +49,7 @@ public class BookController {
     }
     //  2)그래서 기존객체를 가져온다.arr = [{}, {}, {}] arr[1]= {title: hi}
     Book old = (Book) bookList.get(index);
-    //  3)새로운 객체 조회수에 기존 조회수를 복사한다.
-
-    //  4)새로운 객체 날짜에 기존 날짜를 복사한다.
+    book.setReadDate(old.getReadDate());
 
     // 1)기존객체인 index를 버리고 새객체인 board를 넣는것이기 때문에
     //  조회수, 날짜가 업데이트 되지 않는다.

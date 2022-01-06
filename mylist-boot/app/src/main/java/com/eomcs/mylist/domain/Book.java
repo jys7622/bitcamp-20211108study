@@ -15,7 +15,6 @@ public class Book {
   Date readDate; // 읽은 날짜
   String feed; // 독후감
 
-
   public String getTitle() {
     return title;
   }
@@ -63,5 +62,6 @@ public class Book {
     return "Book [title=" + title + ", author=" + author + ", press=" + press + ", page=" + page
         + ", price=" + price + ", readDate=" + readDate + ", feed=" + feed + "]";
   }
+
 
 }

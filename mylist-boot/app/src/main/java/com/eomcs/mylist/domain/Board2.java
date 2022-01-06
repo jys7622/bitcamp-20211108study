@@ -1,5 +1,7 @@
 package com.eomcs.mylist.domain;
 
+
+
 public class Board2 {
   String title;
   String content;
@@ -7,6 +9,9 @@ public class Board2 {
   java.sql.Date createdDate;
 
 
+  public Board2() {
+    System.out.println("Board2() 호출됨!");
+  }
 
   public String getTitle() {
     return title;

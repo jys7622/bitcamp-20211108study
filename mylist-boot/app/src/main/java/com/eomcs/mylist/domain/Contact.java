@@ -1,11 +1,18 @@
 package com.eomcs.mylist.domain;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
+
 public class Contact {
   String name;
   String email;
   String tel;
   String company;
   
+  public Contact() {
+    System.out.println("Contact() 호출됨!");
+  }
   
   @Override
   public String toString() {

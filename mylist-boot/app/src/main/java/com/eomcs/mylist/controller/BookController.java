@@ -7,19 +7,19 @@ import com.eomcs.mylist.domain.Board;
 import com.eomcs.util.ArrayList;
 
 @RestController 
-public class BoardController2 {
+public class BookController {
   ArrayList boardList = new ArrayList();
   
-  public BoardController2() {
-    System.out.println("BoardController() 호출됨!");
+  public BookController() {
+    System.out.println("BookController() 호출됨!");
   }
 
-  @RequestMapping("/board2/list")
+  @RequestMapping("/book/list")
   public Object list() {
     return boardList.toArray(); 
   }
 
-  @RequestMapping("/board2/add")
+  @RequestMapping("/book/add")
   public Object add(Board board) {
     board.setCreatedDate(new Date(System.currentTimeMillis()));
     boardList.add(board);
@@ -27,7 +27,7 @@ public class BoardController2 {
   }
 
 
-  @RequestMapping("/board2/get")
+  @RequestMapping("/book/get")
   public Object get(int index) {
     if (index < 0 || index >= boardList.size()) {
       return "";
@@ -38,7 +38,7 @@ public class BoardController2 {
     return board;
   }
 
-  @RequestMapping("/board2/update")
+  @RequestMapping("/book/update")
   // 클라이언트가 인덱스란 이름으로 업데이트할 게시물의 
   // 번호를 보내면, 그걸 파라미터로 넘겨줘, 나머지는 Board타입의 
   // board객체에 담아서 줘.
@@ -57,7 +57,7 @@ public class BoardController2 {
     return boardList.set(index, board) == null ? 0 : 1;
   }
 
-  @RequestMapping("/board2/delete")
+  @RequestMapping("/book/delete")
   public Object delete(int index) {
     if (index < 0 || index >= boardList.size()) {
       return 0;

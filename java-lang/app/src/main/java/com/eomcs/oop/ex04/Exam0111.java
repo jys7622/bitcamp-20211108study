@@ -12,6 +12,8 @@ public class Exam0111 {
     
     // => 문자열 리터럴을 사용하여 String 인스턴스를 초기화시키기.
     String s1 = new String("HelloABCabc012가각간"); // String(스트링 리터럴) 생성자를 호출하여 인스턴스 초기화
+    // s1은 문자열이 들어있는 객체 주소를 가지고있는 레퍼런스
+    
     System.out.println(s1);
     System.out.println("---------------------");
     // => char[] 을 사용하여 String 인스턴스 초기화시키기.
@@ -29,7 +31,7 @@ public class Exam0111 {
         (byte)0x6c, // l
         (byte)0x6c, // l
         (byte)0x6f  // o 
-    };
+    }; //파일, 네트워크로부터 텍스트를 받아올 때 바이트 배열로 넘어온다.
     String s3 = new String(bytes); // String(byte[]) 생성자를 호출하여 인스턴스 초기화
 
     System.out.printf("%s, %s, %s\n", s1, s2, s3);

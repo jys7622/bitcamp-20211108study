@@ -25,7 +25,7 @@ public class Exam0210 {
     // 두 인스턴스에 들어 있는 문자열이 같은 지 비교할 때  //https://coding-factory.tistory.com/536참고하기
     System.out.println(s1.equals("aaa")); // false
     System.out.println(s1.equals("Hello")); // true
-    System.out.println(s1 == "Hello"); // false
+    System.out.println(s1 == "Hello"); // false  -> s1에 들어있는 주소, String Hello의 주소는 다르기 때문
 
     System.out.println("-------------------------");
 

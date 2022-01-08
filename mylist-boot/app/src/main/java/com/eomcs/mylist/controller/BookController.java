@@ -1,5 +1,7 @@
 package com.eomcs.mylist.controller;
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.eomcs.mylist.domain.Book;
@@ -7,10 +9,25 @@ import com.eomcs.util.ArrayList;
 
 @RestController 
 public class BookController {
+
   ArrayList bookList = new ArrayList();
 
-  public BookController() {
+  public BookController() throws Exception {
     System.out.println("BookController() 호출됨!");
+    FileReader in = new FileReader("books.csv");
+
+    StringBuilder buf = new StringBuilder();
+    int c;
+    while ((c = in.read()) != -1) {
+      if (c == '\n') {
+        bookList.add(Book.valueOf(buf.toString())); 
+        buf.setLength(0); 
+      } else { 
+        buf.append((char) c);
+      }
+    }
+
+    in.close();
   }
 
   @RequestMapping("/book/list")
@@ -20,10 +37,7 @@ public class BookController {
 
   @RequestMapping("/book/add")
   public Object add(Book book) {
-    // book.setReadDate(LocalDateTime(book.readDate));
-    System.out.println(book.getReadDate());
     bookList.add(book);
-
     return bookList.size();
   }
 
@@ -33,26 +47,14 @@ public class BookController {
     if (index < 0 || index >= bookList.size()) {
       return "";
     }
-    //Board 객체는 Object객체를 가리키지 못하기 때문에 (Board)를 붙인다.
-    Book book = (Book) bookList.get(index); 
-
-    return book;
+    return bookList.get(index);
   }
 
   @RequestMapping("/book/update")
-  // 클라이언트가 인덱스란 이름으로 업데이트할 게시물의 
-  // 번호를 보내면, 그걸 파라미터로 넘겨줘, 나머지는 Board타입의 
-  // board객체에 담아서 줘.
   public Object update(int index, Book book) {
     if (index < 0 || index >= bookList.size()) {
       return 0;
     }
-    //  2)그래서 기존객체를 가져온다.arr = [{}, {}, {}] arr[1]= {title: hi}
-    Book old = (Book) bookList.get(index);
-    book.setReadDate(old.getReadDate());
-
-    // 1)기존객체인 index를 버리고 새객체인 board를 넣는것이기 때문에
-    //  조회수, 날짜가 업데이트 되지 않는다.
     return bookList.set(index, book) == null ? 0 : 1;
   }
 
@@ -61,11 +63,23 @@ public class BookController {
     if (index < 0 || index >= bookList.size()) {
       return 0;
     }
-    return bookList.remove(index) == null ? 0 :1;
+    return bookList.remove(index) == null ? 0 : 1;
   }
 
-}
+  @RequestMapping("/book/save")
+  public Object save() throws Exception {
+    FileWriter out = new FileWriter("books.csv"); // 따로 경로를 지정하지 않으면 파일은 프로젝트 폴더에 생성된다.
 
+    Object[] arr = bookList.toArray();
+    for (Object obj : arr) {
+      Book book = (Book) obj;
+      out.write(book.toCsvString() + "\n");
+    }
+
+    out.close();
+    return arr.length;
+  }
+}
 
 
 

@@ -1,5 +1,7 @@
 package com.eomcs.mylist.controller;
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.sql.Date;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +10,26 @@ import com.eomcs.util.ArrayList;
 
 @RestController 
 public class BoardController {
+
   ArrayList boardList = new ArrayList();
+
+  public BoardController() throws Exception {
+    System.out.println("BoardController() 호출됨!");
+    FileReader in = new FileReader("boards.csv");
+
+    StringBuilder buf = new StringBuilder();
+    int c;
+    while ((c = in.read()) != -1) {
+      if (c == '\n') {
+        boardList.add(Board.valueOf(buf.toString())); 
+        buf.setLength(0); 
+      } else { 
+        buf.append((char) c);
+      }
+    }
+
+    in.close();
+  }
 
   @RequestMapping("/board/list")
   public Object list() {
@@ -17,6 +38,7 @@ public class BoardController {
 
   @RequestMapping("/board/add")
   public Object add(Board board) {
+
     board.setCreatedDate(new Date(System.currentTimeMillis()));
     boardList.add(board);
     return boardList.size();
@@ -28,28 +50,22 @@ public class BoardController {
     if (index < 0 || index >= boardList.size()) {
       return "";
     }
-    //Board 객체는 Object객체를 가리키지 못하기 때문에 (Board)를 붙인다.
-    Board board = (Board) boardList.get(index); 
-    board.setViewCount(board.getViewCount() +1);
+    Board board = (Board) boardList.get(index);
+    board.setViewCount(board.getViewCount() + 1);
+
     return board;
   }
 
   @RequestMapping("/board/update")
-  // 클라이언트가 인덱스란 이름으로 업데이트할 게시물의 
-  // 번호를 보내면, 그걸 파라미터로 넘겨줘, 나머지는 Board타입의 
-  // board객체에 담아서 줘.
   public Object update(int index, Board board) {
     if (index < 0 || index >= boardList.size()) {
       return 0;
     }
-    //  2)그래서 기존객체를 가져온다.
+
     Board old = (Board) boardList.get(index);
-    //  3)새로운 객체 조회수에 기존 조회수를 복사한다.
     board.setViewCount(old.getViewCount());
-    //  4)새로운 객체 날짜에 기존 조회수를 복사한다.
     board.setCreatedDate(old.getCreatedDate());
-    // 1)기존객체인 index를 버리고 새객체인 board를 넣는것이기 때문에
-    //  조회수, 날짜가 업데이트 되지 않는다.
+
     return boardList.set(index, board) == null ? 0 : 1;
   }
 
@@ -58,11 +74,23 @@ public class BoardController {
     if (index < 0 || index >= boardList.size()) {
       return 0;
     }
-    return boardList.remove(index) == null ? 0 :1;
+    return boardList.remove(index) == null ? 0 : 1;
   }
 
-}
+  @RequestMapping("/board/save")
+  public Object save() throws Exception {
+    FileWriter out = new FileWriter("boards.csv"); // 따로 경로를 지정하지 않으면 파일은 프로젝트 폴더에 생성된다.
 
+    Object[] arr = boardList.toArray();
+    for (Object obj : arr) {
+      Board board = (Board) obj;
+      out.write(board.toCsvString() + "\n");
+    }
+
+    out.close();
+    return arr.length;
+  }
+}
 
 
 

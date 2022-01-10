@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.sql.Date;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.eomcs.io.FileWriter2;
 import com.eomcs.mylist.domain.Board;
 import com.eomcs.util.ArrayList;
 
@@ -17,17 +18,11 @@ public class BoardController {
     System.out.println("BoardController() 호출됨!");
     com.eomcs.io.FileReader2 in = new com.eomcs.io.FileReader2("boards.csv");
 
-    StringBuilder buf = new StringBuilder();
-    int c;
-    while ((c = in.read()) != -1) {
-      if (c == '\n') {
-        boardList.add(Board.valueOf(buf.toString())); 
-        buf.setLength(0); 
-      } else if (c =='\r') {
-        // 무시! CR(Carrage Return; \r) 코드는 버퍼에 담지 말고 버린다.
-      } else { 
-        buf.append((char) c);
-      }
+    
+    String line;
+    while ((line = in.readLine()).length() != 0) { 
+        boardList.add(Board.valueOf(line)); 
+     
     }
 
     in.close();
@@ -81,12 +76,12 @@ public class BoardController {
 
   @RequestMapping("/board/save")
   public Object save() throws Exception {
-    FileWriter out = new FileWriter("boards.csv"); // 따로 경로를 지정하지 않으면 파일은 프로젝트 폴더에 생성된다.
+    FileWriter2 out = new FileWriter2("boards.csv"); // 따로 경로를 지정하지 않으면 파일은 프로젝트 폴더에 생성된다.
 
     Object[] arr = boardList.toArray();
     for (Object obj : arr) {
       Board board = (Board) obj;
-      out.write(board.toCsvString() + "\n");
+      out.println(board.toCsvString());
     }
 
     out.close();

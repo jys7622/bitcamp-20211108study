@@ -14,7 +14,7 @@ public class BookController {
 
   public BookController() throws Exception {
     System.out.println("BookController() 호출됨!");
-    FileReader in = new FileReader("books.csv");
+    com.eomcs.io.FileReader2 in = new com.eomcs.io.FileReader2("books.csv");
 
     StringBuilder buf = new StringBuilder();
     int c;
@@ -22,6 +22,8 @@ public class BookController {
       if (c == '\n') {
         bookList.add(Book.valueOf(buf.toString())); 
         buf.setLength(0); 
+      } else if (c =='\r') {
+        // 무시! CR(Carrage Return; \r) 코드는 버퍼에 담지 말고 버린다.
       } else { 
         buf.append((char) c);
       }

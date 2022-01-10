@@ -15,7 +15,7 @@ public class BoardController {
 
   public BoardController() throws Exception {
     System.out.println("BoardController() 호출됨!");
-    FileReader in = new FileReader("boards.csv");
+    com.eomcs.io.FileReader2 in = new com.eomcs.io.FileReader2("boards.csv");
 
     StringBuilder buf = new StringBuilder();
     int c;
@@ -23,6 +23,8 @@ public class BoardController {
       if (c == '\n') {
         boardList.add(Board.valueOf(buf.toString())); 
         buf.setLength(0); 
+      } else if (c =='\r') {
+        // 무시! CR(Carrage Return; \r) 코드는 버퍼에 담지 말고 버린다.
       } else { 
         buf.append((char) c);
       }

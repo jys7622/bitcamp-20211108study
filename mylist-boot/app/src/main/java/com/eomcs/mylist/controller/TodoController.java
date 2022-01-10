@@ -14,7 +14,7 @@ public class TodoController {
 
   public TodoController() throws Exception {
     System.out.println("TodoController() 호출됨!");
-    FileReader in = new FileReader("todos.csv");
+    com.eomcs.io.FileReader2 in = new com.eomcs.io.FileReader2("todos.csv");
 
     StringBuilder buf = new StringBuilder();
     int c;
@@ -22,6 +22,8 @@ public class TodoController {
       if (c == '\n') {
         todoList.add(Todo.valueOf(buf.toString())); 
         buf.setLength(0); 
+      } else if (c =='\r') {
+        // 무시! CR(Carrage Return; \r) 코드는 버퍼에 담지 말고 버린다.
       } else { 
         buf.append((char) c);
       }

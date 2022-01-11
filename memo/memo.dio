@@ -1,0 +1,37 @@
+<mxfile host="65bd71144e">
+    <diagram id="GYCarYSJkYalMBhNIcP4" name="Page-1">
+        <mxGraphModel dx="734" dy="437" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="1390" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="88" value="" style="edgeStyle=none;html=1;sketch=1;rounded=0;" edge="1" parent="1" source="86" target="87">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="86" value="class Sedan&lt;br&gt;launch()&lt;br&gt;stop()&lt;br&gt;go(){}&lt;br&gt;doSunroof(){}&lt;br&gt;run()" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="200" width="120" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="87" value="class Car&lt;br&gt;Sedan,Truck의 공통기능&lt;br&gt;launch()&lt;br&gt;stop()&lt;br&gt;go()&lt;br&gt;run()" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="10" width="120" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="89" value="class Truck&lt;br&gt;launch()&lt;br&gt;stop()&lt;br&gt;go()&lt;br&gt;dump(){}&lt;br&gt;run()" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="361" y="200" width="120" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="90" value="" style="shape=link;html=1;sketch=1;rounded=0;" edge="1" parent="1">
+                    <mxGeometry width="100" relative="1" as="geometry">
+                        <mxPoint x="260" y="160" as="sourcePoint"/>
+                        <mxPoint x="430" y="160" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="91" value="" style="line;strokeWidth=2;direction=south;html=1;rounded=0;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="160" width="16" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="99" value="Sedan과 Truck 클래스에서 공통된&lt;br&gt;기능인&amp;nbsp;&lt;br&gt;launch, stop, go를 추출하여&amp;nbsp;&lt;br&gt;Car클래스를 만든후 Car클래스를&lt;br&gt;상속받도록한다.&lt;br&gt;이것을 일반화(Generalization)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rounded=0;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="341" y="30" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="105" value="Sedan, Truck에서의 run()역할이 각각 다르기 때문에&lt;br&gt;각 열할에 맞게 run() 메서드를 재정의 해야한다.&lt;br&gt;그렇기 때문에 Super 클래스에서 run()메서드를 정의할 필요가 없다&lt;br&gt;단지 서브 클래스에서 run() 이라는 메서드가 있어야 한다고&lt;br&gt;선언만 하면 된다.&lt;br&gt;메서드 형식만 정하는 것&lt;br&gt;-&amp;gt; 추상 클래스의 역할&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="481" y="195" width="370" height="100" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

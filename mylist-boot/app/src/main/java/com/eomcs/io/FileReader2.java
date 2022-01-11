@@ -2,7 +2,7 @@ package com.eomcs.io;
 
 import java.io.FileReader;
 
-// 기존 코드를 자신의 코드처럼 사용하기 위해 기해당 클래스를 포함한다.
+// 기존 코드를 자신의 코드처럼 사용하기 위해 해당 클래스를 포함한다.
 public class FileReader2 {
   
  // 기존의 클래스 포함 ! 

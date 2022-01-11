@@ -14,7 +14,8 @@ public class Calculator2 {
   }
 
   // 새 기능을 기존 클래스에 추가한다.
-  //
+  // 기존 클래스 Calculator의 코드를 복사하여
+  // 새로만든 class Calculator2에 붙이고 새로운 기능은 Calculator2에 추가.
   public void multiple(int value) {
     this.result *= value;
   }

@@ -1273,3 +1273,192 @@ public A2(){
 ## 인스턴스 필드(변수) 초기화 문장
 - 인스턴스 블록과 마찬가지로 생성자의 맨 앞 부분에 삽입된다.
 - 블록과 필드가 동시에 존재한다면 종류 구분하지 않고 작성된 순서대로 생성자 맨앞 부분에 삽입된다.
+
+# 2022년 01월 11일
+
+## 상속
+ - Super 클래스(상속을 해주는 상위 클래스, 부모 클래스)
+ - Sub 클래스(상속을 받는 하위 클래스, 자식 클래스)
+ - Super 클래스는 Sub 클래스의 자원을 사용할 수 없다.
+ - Sub 클래스는 Super 클래스의 자원을 사용할 수 있다.
+ - 상속은 기존 클래스의 코드를 변경하지 않고 새로운 기능을 클래스에 추가하고 싶을 때 사용한다.
+ - 기능 추가를 위해 기존 클래스의 코드를 변경하면 기존 클래스를 사용하고 있던 파일들에서 오류가 발생할 수 있다.
+ - 상속은 Super 클래스의 코드를 Sub 클래스에 복사해오는 것이 아니다. 
+ - Sub 클래스에는 Super 클래스의 코드가 존재하지 않는다.
+ ```java
+ public class Calculator() {
+   public int result;
+
+   public void plus(int value){
+     this.result += value;
+   }
+   public void minus(int value) {
+     this.result -= value;
+   }
+ }
+ ```
+ ```java
+ public class Calculator2 extends Calculator() {
+   
+  public void multiple(int value)() {
+    this.result *= result;
+  }
+  public void divide(int value)() {
+    this.result /= result;
+  }
+ }
+ -> Calculator 클래스를 상속받는 Calculaotr2에는
+ Calculator 클래스의 코드가 없다. extends를 통해 상속
+ 관계만 선언하고, 새로운 기능만 추가했다.
+ 상속은 Super 클래스의 사용 권한을 획득하는 것이다.
+ ```
+![](./images/2022-01-11-17-20-33.png)
+위의 그림처럼 상속관계가 정해졌을 때
+- B 클래스는 A 클래스의 sub 클래스이기 때문에 Super 클래스 A의 자원을 사용할 수 있다.
+- C 클래스는 B 클래스의 Sub 클래스이기 때문에 B 클래스의 자원을 사용할 수 있다. 
+- 또한 B 클래스의 Super 클래스인 A 클래스의 자원도 사용할 수 있다.
+- 결과적으로 D 클래스는 C 클래스만 상속받았지만 C, B, A 의 자원을 사용할 수 있게된다.
+
+-> 자원 사용과정은
+D 클래스에서 A클래스의 메서드를 호출하게 되면
+```java
+class A(){
+  public void method1(){
+
+  }
+}
+```
+```java
+class B extends A(){
+  public void method2(){
+
+  }
+}
+```
+```java
+class C extends B(){
+  public void method3(){
+
+  }
+}
+```
+```java
+class D extends C(){
+  public void method4(){
+    D obj = new D();
+    obj.method4();
+    obj.method3();
+    obj.method2();
+    obj.method1();
+    - method4는 D 클래스에서 찾아 사용
+    - method3은 D 클래스에서 못찾았으니 그 Super 클래스인 C 클래스에서 찾아 사용
+    - method2는 D, C 클래스에서 못찾았으니 그 Super 클래스인 B 클래스에서 찾아 사용
+    - method1은 D, C, B 클래스에서 못찾았으니 그 Super 클래스인 A 클래스에서 찾아사용.
+    
+    최상위 클래스까지 가서도 찾지 못하면 컴파일 오류 발생.
+  }
+}
+```
+## 상속에서 클래스 로딩과 인스턴스 생성과정
+- A 클래스를 상속한 B 클래스가 있다.
+  - A 클래스가 메모리에 로딩되어 있지 않다면 A클래스를 우선 메모리에 로딩한다.
+  - 그 후 스태틱 필드 생성한 후 스태틱 블록을 실행 시킨다.
+  - B 클래스를 메모리에 로딩한다
+  - B 클래스의 스태틱 필드를 생성, 스태틱 블록을 실행 시킨다.
+  - A 클래스의 인스턴스 필드(변수) Heap 메모리에 생성
+  - B 클래스의 인스턴스 필드(변수) Heap 메모리에
+  - Super 클래스인 A 클래스의 생성자부터 실행하며 차례대로 내려와 Sub 클래스의 생성자를 실행한다.
+  - 따라서 인스턴스 생성시에는 상속을 해주는 Super 클래스들의 클래스 파일이 반드시 존재해야 한다.(Sub 클래스에 Super 클래스의 코드를 복사해오는 것이 아니고, 사용권한만 얻는것이기 때문)
+
+- Super클래스에서 어떤 생성자를 호출할지 지정하지 않으면 컴파일러가 자동적으로 기본 생성자를 호출하라는 명령어 super(); 를 Sub 클래스 생성자 첫 줄에 추가하게 된다.(생략가능)
+- 하지만 Super 클래스를 호출하는 명령어는 반드시 생성자의 첫 줄에 위치해야 한다.
+- Super 클래스에 기본 생성자가 없으면 컴파일 에러가 발생하게 된다.
+```java
+public class A(){
+  int v1;
+  A(int value){
+    this.v1 = value;
+  }
+}
+```
+```java
+public class B extends A(){
+  int v2;
+  B() {
+    supuer(100);
+  }
+  }
+-> Super 클래스인 A에는 기본생성자는 존재하지 않고 int 값을 받는 생성자만 존재하기 때문에,
+직접 super(100)처럼 int값을 받는 생성자를 지정해서 호출해야 한다.
+```
+- Java에서는 다중상속을 지원하지 않는다.
+
+## 상속의 전문화와 일반화
+- 전문화(Specialization) : 일반적인 상속의 개념으로 Super 클래스를 상속받아 Sub 클래스를 만드는 작업.
+  - 기존 클래스에 특별한 기능을 추가하여 특별한 클래스를 만든다.
+- 일반화(Generalization) : Sub 클래스가 되는 클래스들에서 공통된 기능들을 뽑아 Super 클래스로 정의하는 것.
+![](./images/2022-01-11-18-30-17.png)
+![](./images/2022-01-11-18-30-30.png)
+- 일반화는 다른 클래스들에서 공통된 기능을 추출하여 새로운 클래스를 만들어 Super 클래스로 정의하고 다른 클래스들이 Super 클래스들을 상속받는 Sub 클래스가 되도록 하는것.
+- 하지만 캠핑카와 화물차에서 공통된 기능인 주행, 주차, 시동 또한 각각 다르게 사용될 수 있다. 
+- 예를들면 캠핑카에서 주행은 조용히 주행. 이런식으로 실행되지만 덤프트럭에서 주행은 덜컹거리면서 주행. 이런식으로 서로 다르게 실행되는 메서드 들이 있다.
+- 그래서 각각 역할에 맞게 메서드를 재정의 해야 하는데 이것을 오버라이딩(overriding) 이라고 한다.
+- 일반화 과정에서 생성된 Super 클래스는 공통되는 코드를 쉽게 관리하기 위해 만들어진 것이다.
+
+
+## 추상 클래스, 메서드
+- 일반화 과정에서 생성된 Super 클래스는 직접 사용하기 위해 만들어진 클래스가 아니기 때문에 추상 클래스라는 개념을 사용한다.
+- 일반화 과정에서 정의한 Super 클래스의 직접적인 사용을 피하기 위해 
+```java
+public abstract class 클래스명 {
+
+}
+이렇게 abstract 라는 문법을 사용한다.
+```
+- 추상 클래스로 선언된 클래스에서 인스턴스를 생성하려고 하면 컴파일 에러가 발생한다.
+- 서브 클래스에서 재정의할 메서드는 굳이 Super 클래스 메서드에 구현하지 말라.
+```java
+public abstract class Car {
+  public Car() {
+    super();
+  }
+
+  public void start() {
+    System.out.println("시동 건다!");
+  }
+
+  public void shutdown() {
+    System.out.println("시동 끈다!");
+  }
+
+  public abstract void run(); // 추상메서드
+
+}
+```
+```java
+public class Truck extends Car {
+  public void run() {
+    System.out.println("덜컹 덜컹 달린다.");
+  }
+
+  public void dump() {
+    System.out.println("짐을 내린다.");
+  }
+}
+```
+```java
+public class Sedan extends Car {
+  public void run() {
+    System.out.println("쌩쌩 달린다.");
+  }
+
+  public void doSunroof(boolean open) {
+    if (open) {
+      System.out.println("썬루프를 연다.");
+    } else {
+      System.out.println("썬루프를 닫는다.");
+    }
+  }
+}
+```
+--> run()메서드는 Sedan, Truck 클래스에서 각각 역할에 맞게 재정의된다. 이렇게 반드시 재정의되는 메서드는 Super클래스에 구현하지 않고 추상메서드 public abstract void run(); {} 로 정의한다.

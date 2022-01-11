@@ -4,32 +4,50 @@
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="88" value="" style="edgeStyle=none;html=1;sketch=1;rounded=0;" edge="1" parent="1" source="86" target="87">
+                <mxCell id="122" value="" style="edgeStyle=none;sketch=1;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="120" target="123">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="86" value="class Sedan&lt;br&gt;launch()&lt;br&gt;stop()&lt;br&gt;go(){}&lt;br&gt;doSunroof(){}&lt;br&gt;run()" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
-                    <mxGeometry x="200" y="200" width="120" height="90" as="geometry"/>
+                <mxCell id="120" value="class 화물차 extends 자동차&lt;br&gt;화물 적재&lt;br&gt;&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="260" width="180" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="87" value="class Car&lt;br&gt;Sedan,Truck의 공통기능&lt;br&gt;launch()&lt;br&gt;stop()&lt;br&gt;go()&lt;br&gt;run()" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
-                    <mxGeometry x="200" y="10" width="120" height="110" as="geometry"/>
+                <mxCell id="124" value="" style="edgeStyle=none;sketch=1;html=1;" edge="1" parent="1" source="121" target="123">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="89" value="class Truck&lt;br&gt;launch()&lt;br&gt;stop()&lt;br&gt;go()&lt;br&gt;dump(){}&lt;br&gt;run()" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
-                    <mxGeometry x="361" y="200" width="120" height="90" as="geometry"/>
+                <mxCell id="121" value="class 캠핑카 extends 자동차&lt;br&gt;세면&lt;br&gt;조리&lt;br&gt;화장실" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="260" width="170" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="90" value="" style="shape=link;html=1;sketch=1;rounded=0;" edge="1" parent="1">
-                    <mxGeometry width="100" relative="1" as="geometry">
-                        <mxPoint x="260" y="160" as="sourcePoint"/>
-                        <mxPoint x="430" y="160" as="targetPoint"/>
-                    </mxGeometry>
+                <mxCell id="123" value="class 자동차&lt;br&gt;주행&lt;br&gt;주차&lt;br&gt;시동" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="330" y="140" width="120" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="91" value="" style="line;strokeWidth=2;direction=south;html=1;rounded=0;sketch=1;" vertex="1" parent="1">
-                    <mxGeometry x="420" y="160" width="16" height="40" as="geometry"/>
+                <mxCell id="125" value="전문화" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="365" y="100" width="50" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="99" value="Sedan과 Truck 클래스에서 공통된&lt;br&gt;기능인&amp;nbsp;&lt;br&gt;launch, stop, go를 추출하여&amp;nbsp;&lt;br&gt;Car클래스를 만든후 Car클래스를&lt;br&gt;상속받도록한다.&lt;br&gt;이것을 일반화(Generalization)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rounded=0;sketch=1;" vertex="1" parent="1">
-                    <mxGeometry x="341" y="30" width="200" height="90" as="geometry"/>
+                <mxCell id="130" value="" style="edgeStyle=none;sketch=1;html=1;" edge="1" parent="1" source="127" target="129">
+                    <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="105" value="Sedan, Truck에서의 run()역할이 각각 다르기 때문에&lt;br&gt;각 열할에 맞게 run() 메서드를 재정의 해야한다.&lt;br&gt;그렇기 때문에 Super 클래스에서 run()메서드를 정의할 필요가 없다&lt;br&gt;단지 서브 클래스에서 run() 이라는 메서드가 있어야 한다고&lt;br&gt;선언만 하면 된다.&lt;br&gt;메서드 형식만 정하는 것&lt;br&gt;-&amp;gt; 추상 클래스의 역할&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="481" y="195" width="370" height="100" as="geometry"/>
+                <mxCell id="127" value="class 캠핑카&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;세면&lt;br&gt;조리&lt;br&gt;화장실" style="whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="610" width="130" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="131" value="" style="edgeStyle=none;sketch=1;html=1;" edge="1" parent="1" source="128" target="129">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="128" value="class 화물차&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;화물 적재" style="whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="420" y="610" width="120" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="129" value="class 자동차&lt;br&gt;&lt;span style=&quot;color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bspan%26gt%3B%EC%A3%BC%ED%96%89%26lt%3B%2Fspan%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bspan%26gt%3B%EC%A3%BC%EC%B0%A8%26lt%3B%2Fspan%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bspan%26gt%3B%EC%8B%9C%EB%8F%99%26lt%3B%2Fspan%26gt%3B%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3Bsketch%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22280%22%20y%3D%22550%22%20width%3D%2270%22%20height%3D%2250%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="420" width="120" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="132" value="&lt;span&gt;주행&lt;/span&gt;&lt;br&gt;&lt;span&gt;주차&lt;/span&gt;&lt;br&gt;&lt;span&gt;시동&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="280" y="640" width="70" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="135" value="&lt;span&gt;주행&lt;/span&gt;&lt;br&gt;&lt;span&gt;주차&lt;/span&gt;&lt;br&gt;&lt;span&gt;시동&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="445" y="660" width="70" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="136" value="&lt;span&gt;주행&lt;/span&gt;&lt;br&gt;&lt;span&gt;주차&lt;/span&gt;&lt;br&gt;&lt;span&gt;시동&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
+                    <mxGeometry x="365" y="470" width="70" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="137" value="일반화" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="370" y="390" width="50" height="20" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

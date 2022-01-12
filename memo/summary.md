@@ -1462,3 +1462,281 @@ public class Sedan extends Car {
 }
 ```
 --> run()메서드는 Sedan, Truck 클래스에서 각각 역할에 맞게 재정의된다. 이렇게 반드시 재정의되는 메서드는 Super클래스에 구현하지 않고 추상메서드 public abstract void run(); {} 로 정의한다.
+
+# 2022년 01월12일
+
+## 다형적 변수
+- 레퍼런스는 같은 타입의 객체를 가리킬 수 있고, 그 클래스의 서브 클래스 객체까지 가리킬 수 있다.
+- 서브 클래스는 인스턴스를 만들 때 상위 클래스의 인스턴스 변수도 만들어서 상위 클래스의 모든 자원을 사용할 수 있기 때문
+```java
+public static void main(String[] args){
+  Vehicle vehicle = new Vehicle();
+  Bike bike = new Bike();
+  Car car = new Car();
+  Sedan sedan = new Sedan();
+  Truck truck = new Truck();
+
+  Vehicle vehicle2 = null;
+  vehicle2 = bike;
+  vehicle2 = car;
+  vehicle2 = sedan;
+  vehicle2 = truck;
+
+  Car car2 = null
+  car2 = sedan;
+  car2 = truck;
+  car2 = bike; // 에러발생. car와 bike는 상속관계가 아니기 때문.
+}
+```
+![](images/2022-01-12-21-26-58.png)
+- 하지만 하위 클래스의 레퍼런스로는 상위 클래스의 인스턴스를 가리킬 수 없다.
+- 하위클래스는 인스턴스를 생성할 때 상위 클래스의 인스턴스 변수도 같이 만들기 때문에 상위 클래스의 모든 클래스멤버(필드, 메서드)를 사용할 수 있지만, 상위 클래스의 인스턴스에는 하위 클래스의 클래스 멤버가 없을 수도 있기 때문이다.
+
+```java
+class Vehicle {
+  String model;
+  int capacity;
+  public Vehicle(String model, int capacity){
+    this.model = model;
+    this.capacity = capacity;
+  }
+}
+```
+```java
+class Car extends Vehicle {
+  int cc;
+  int valve;
+}
+public Car(String model, int capacity, int cc, int valve)
+super(model, capacity)
+this.cc = cc;
+this.valve = valve;
+```
+```java
+public class Sedan extends Car {
+  boolean sunroof;
+  boolean auto;
+
+  public Sedan(String model, int capacity, int cc, int valve, boolean sunroof, boolean auto) {
+    super(model, capacity, cc, valve);
+    this.sunroof = sunroof;
+    this.auto = auto;
+  }
+}
+```
+- 이렇게 Vehicle, Car, Sedan 클래스가 있다. 차례대로 상속관계이다
+```java
+public static void main(String[] args){
+  Car c = new Sedan(); // 상위 클래스의 레퍼런스로 하위 클래스의 인스턴스를 가리킬 때
+  c.model = "소나타" ; // model은  Vehicle의 인스턴스변수(하위 클래스 Car의 레퍼런스로 상위클래스 Vehicle의 인스턴스 변수 model 사용 가능)
+  c.valve = 16; // valve는 Car의 인스턴스 변수
+  c.sunroof = true; // 에러발생. Car의 레퍼런스가 하위 클래스의 인스턴스 Sedan을 가리키고 있어도 Car에 없는 변수인 sunroof에 접근할 수는 없다.
+  해결책
+  ((Sedan)c).sunroof = true; // 형변환을 통해서 어떤 타입의 인스턴스를 가리키는지 명시해주어야 한다.
+  또는
+  Sedan s = (Sedan)c;
+  s.sunroof = true; // 가리키는 인스턴스의 레퍼런스를 생성해 저장한다음 사용
+}
+```
+- 다형적 변수의 활용
+```java
+public static void printSedan(Sedan sedan){
+
+}
+public static void printTruck(Truck truck){
+
+}
+각각의 다른 타입의 객체에 대한 작업을 수행해야 하는 경우
+printSedan(sedan) 
+printTruck(truck)
+각각 따로 메서드를 만들어야 하는 번거로움이 있다.
+
+해결책
+public static void printCar(Car car){
+
+}
+printCar(sedan)
+printCar(truck)
+Sedan과 Truck의 공통 상위 클래스인 Car로 메서드를 정의하여 사용한다.
+```
+## 메서드 오버로딩
+- 파라미터의 형식(타입과 개수)은 다르지만 같은 기능을 수행하는 메서드에 같은 이름을 부여해서, 프로그래밍의 일관성을 제공하기 위함.
+```java
+static class Calculator{
+static int plus(int a, int b){
+  return a + b;
+  }
+static int plus(int a){
+  return a + a;
+  }
+static int plus(float a, float b){
+  return a + b;
+  }
+}
+호출 할 때는 같은 메서드 이름이지만 파라미터의 타입, 갯수로 호출할 대상을 결정한다
+public static void main(String[] args){
+int r1 = Calculator.plus(100, 200); // int a + int b를 파라미터로 갖는 plus()호출
+int r2 = Calculator.plus(100); // int a + int a를 파라미터로 갖는 plus()호출
+int r3 = Calculator.plus(35.7f,22.2f); // float a + float b를 파라미터로 갖는 plus() 호출
+}
+파라미터의 이름으로 구분하여 호출할 대상을 결정하지는 못한다.
+```
+- 서브 클래스에서 부모 클래스에 있는 메서드와 같은 이름의 메서드(단, 파라미터 갯수, 타입은 달라야함)를 추가하는 것 또한 메서드 오버로딩이다.
+
+## 메서드 오버라이딩
+ - 오버라이딩을 하는 이유?
+ - 오버라이딩은 수퍼 클래스의 메서드가 서브 클래스에 맞지 않는 기능을 가질 때, 맞는 기능을 가지도록 재정의 하는 것을 의미.
+ - 수퍼 클래스의 메서드 시그니처(메서드명, 파라미터의 타입,순서,개수)와 서브 클래스의 메서드 시그니처가 일치해야 한다.
+ - 또한 서브 클래스의 접근 범위가 수퍼 클래스의 접근범위보다 같거나 커야 한다
+```java
+public class Exam0010 {
+
+  static class Score {
+
+    String name;
+    int kor;
+    int eng;
+    int math;
+    int sum;
+    float aver;
+
+    public void compute() {
+      this.sum = this.kor + this.eng + this.math;
+      this.aver = this.sum / 3f;
+    }
+  }
+
+  static class Score2 extends Score {
+    int music;
+    int art;
+  }
+
+  public static void main(String[] args) {
+
+    Score2 score = new Score2();
+
+    score.kor = 100;
+    score.eng = 100;
+    score.math = 100;
+    score.music = 50;
+    score.art = 50;
+
+    score.compute();
+
+    System.out.printf("%d(%f)\n", score.sum, score.aver);
+-> 새로추가한 music, art 변수에 맞춰서 compute() 메서드를 수정해주어야 올바른 계산이 나온다.
+public class Score2 extends Score {
+  int music;
+  int art;
+  public void compute(){
+    this.sum = this.kor + this.eng + this.math + this.music + this.art;
+      this.aver = this.sum / 5f; 
+      // 서브 클래스에서 추가된 music, art변수에 맞게 5개의 점수를 더하고 5로 나누는 기능으로 재정의
+  }
+}
+```
+- 오버라이딩의 사전적 의미는 덮어쓰기. 즉, 수퍼 클래스의 메서드형식을 그대로 서브 클래스에 옮기고 필요한 기능을 덧붙이는 작업.
+- 오버라이딩을 할 때 파라미터의 타입 등을 실수로 다르게 표기하는 것을 방지하기 위해 @Override annotation을 붙여 올바른 형식으로 오버라이딩을 했는지 검사한다.
+
+- 멤버의 접근 범위
+![](images/2022-01-12-22-54-56.png)
+- 오버라이딩 할 때 원래의 접근 범위보다 좁힐 수 없다. 범위가 같거나 커야 한다.
+- 오버라이딩과 super 키워드
+```java
+   static class A {
+    void m() {
+      System.out.println("A의 m()");
+    }
+  }
+
+  static class A2 extends A {
+    @Override
+    void m() {
+      System.out.println("A2의 m()");
+    }
+    void test() {
+      this.m();
+      super.m();
+    }
+  }
+  public static void main(String[] args) {
+    A2 obj = new A2();
+    obj.test();
+  }
+}
+-> this.m()을 호출하면 현재 this에 넘어온주소 (A2 obj = new A2()를 통해 A2의 주소가 this에 넘어왔기 때문에 현재 this에는 A2의 주소가 담겨있다.)인 A2 클래스에 m()메서드가 있는지 찾는다. 
+A2에 m() 메서드가 없으면 A2의 상위 클래스에서 찾는다.
+
+-> super.m()을 호출하게 되면 메서드가 소속된 클래스의 수퍼 클래스(즉 m()메서드가 속한 A2클래스의 super 클래스인 A 클래스)에서 m()메서드를 찾고. 거기도 없으면 그 수퍼 클래스의 수퍼 클래스에서 찾게된다.
+```
+
+```java
+ static class A {
+    void m() {
+      System.out.println("A의 m()");
+    }
+  }
+  static class A2 extends A {
+    @Override
+    void m() {
+      System.out.println("A2의 m()");
+    }
+    void test(){
+      this.m();
+      super.m();
+    }
+  }
+  static class A3 extends A2 {
+    @Override
+    void m() {
+      System.out.println("A3의 m()");
+    }
+  }
+  public static void main(String[] args) {
+    A3 obj = new A3();
+    obj.test(); 
+    
+    }
+}
+-> 
+이 경우에는 A2 클래스에 있는 test(); 메서드를 호출했지만 
+A3 obj = new A3(); 명령어를 통해 A3 객체를 만들어 호출했기 때문에 this에는 
+A3의 객체주소가 넘어왔다. 때문에 A3의 m()을 호출한 것이다.
+하지만 super(); 는 test(); 메서드가 속한  A2의 수퍼 클래스인 A의 m();을 호출한다.
+```
+- 수퍼 클래스와 리턴 타입이 달라도 오버라이딩이 가능하다.(단, 서브 클래스를 리턴타입으로 사용할 때만)
+```java
+ static class Car {}
+  static class Sedan extends Car {}
+  static class Tico extends Sedan {}
+
+  static class CarFactory {
+    Car create() {
+      return new Car();
+    }
+  }
+  static class SedanFactory extends CarFactory {
+  
+    @Override
+    Sedan create() {
+      return new Sedan(); 
+    }
+  }
+
+  static class TicoFactory extends SedanFactory {
+  
+    @Override
+    Tico create() {
+      return new Tico();
+    }
+  }
+-> Sedan은 Car의 서브 클래스이기 때문에 리턴타입이 달라도 오버라이딩이 가능.
+-> Tico또한 Sedan의 서브 클래스이기 때문에 리턴타입이 달라도 오버라이딩이 가능.
+```
+- final의 사용법
+  - 클래스에 final을 붙이면 이 클래스의 서브 클래스를 만들 수 없다.
+  - 메서드에 final을 붙이면 서브 클래스에서 final이 붙은 메서드를 오버라이딩 할 수 없다.
+  - 필드(변수)에 final을 붙이면 상수 필드(변수)가 된다. 즉 , 값을 변경할 수 없는 필드(변수)가 된다.
+  - 상수 필드(변수)는 보통 static 필드(변수)로 만든다
+  static final int v1 = 100;
+  - 파라미터에도 final을 붙일 수 있다. 

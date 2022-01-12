@@ -1,7 +1,7 @@
 package com.eomcs.oop.ex06.a;
 
 public class Car extends Vehicle {
-  int cc;
+  int cc;  //인스턴스 필드
   int valve;
 
   public Car() {}

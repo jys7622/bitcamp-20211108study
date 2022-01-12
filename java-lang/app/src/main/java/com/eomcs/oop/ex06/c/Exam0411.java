@@ -1,7 +1,7 @@
 // 오버라이딩(overriding) - 오버라이딩과 super 키워드
 package com.eomcs.oop.ex06.c;
 
-public class Exam0410 {
+public class Exam0411 {
 
   static class A {
     void m() {
@@ -31,12 +31,23 @@ public class Exam0410 {
     }
   }
 
-  public static void main(String[] args) {
-    A2 obj = new A2();
-    obj.test();
+  static class A3 extends A2 {
+    @Override
+    void m() {
+      System.out.println("A3의 m()");
+    }
   }
+  
+  public static void main(String[] args) {
+    A3 obj = new A3();
+    obj.test(); 
+    // A2의 test() 호출. test는 A2의 메서드이지만
+    // A3 객체를 만들어서 호출했기 때문에 this.m()은 현재 this에 넘어온 객체 주소인 A3의 m()를 호출한 것이다.
+    // 하지만 super()는 A의 m()을 호출한다. 
+    // super() 명령어는 test() 메서드가 소속된 클래스(A2)의 super 클래스를  호출했기 때문이다.
+    
+    }
 }
-
 
 
 

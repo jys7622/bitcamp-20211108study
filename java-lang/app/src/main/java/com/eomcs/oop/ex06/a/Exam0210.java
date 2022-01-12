@@ -1,4 +1,4 @@
-// 다형성 - 다형적 변수와 형변환(type casting)
+  // 다형성 - 다형적 변수와 형변환(type casting)
 package com.eomcs.oop.ex06.a;
 
 public class Exam0210 {
@@ -16,7 +16,9 @@ public class Exam0210 {
     // 레퍼런스가 실제 하위 인스턴스를 가리키고 있다 하더라도,
     // 레퍼런스 타입의 범위를 벗어나서 사용할 수 없다.
     //    c.sunroof = true; // 컴파일 오류!
-    //    c.auto = true;    // 컴파일 오류!
+    //    c.auto = true;    // 컴파일 오류! 
+    //--> c는 Car의 인스턴스다. Car에는 sunroof, auto변수가 없기 때문에 Car의 레퍼런스주소 c로는 사용불가
+    
 
     // 왜?
     // => 자바 컴파일러는 레퍼런스가 실제 어떤 인스턴스를 가리키는지 따지지 않고

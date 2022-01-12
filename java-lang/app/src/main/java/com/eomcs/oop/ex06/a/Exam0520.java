@@ -6,7 +6,7 @@ public class Exam0520 {
   // Sedan과 Truck, Bike의 모든 정보를 자세히 출력하라!
   // 단, 한 개의 메서드로 처리하라!
 
-  public static void print(Vehicle v) {
+  public static void print(Vehicle v) { // Vehicle은 Car(Car의 자식까지), Bike, Truck 등 다 받겠다.
     
     System.out.println("[기본정보]");
     System.out.printf("모델명: %s\n", v.model);
@@ -17,12 +17,12 @@ public class Exam0520 {
     // 판단할 수 있는 연산자를 제공한다. 
     // instanceof 연산자!
 
-    if (v instanceof Bike) {
-      Bike bike = (Bike) v;
+    if (v instanceof Bike) { //만약 v가 바이크의 인스턴스라면
+      Bike bike = (Bike) v; // 바이크로 형변환해서 바이크 정보를 출력해라
       System.out.println("[바이크 정보]");
       System.out.printf("엔진의 존재: %b\n", bike.engine);
       
-    } else if (v instanceof Car) {
+    } else if (v instanceof Car) { 
       Car car = (Car) v;
       System.out.println("[자동차 기본정보]");
       System.out.printf("cc: %d\n", car.cc);

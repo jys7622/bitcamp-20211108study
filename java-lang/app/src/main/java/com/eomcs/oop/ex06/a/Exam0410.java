@@ -5,7 +5,7 @@ public class Exam0410 {
 
   // Sedan과 Truck의 모델명과 cc를 출력하라!
 
-  public static void printSedan(Sedan sedan) {
+  public static void printSedan(Sedan sedan) { //Sedan의 Sub클래스 객체 사용 가능.
     System.out.printf("모델명: %s\n", sedan.model); // Vehicle의 설계도로 만든 인스턴스 변수
     System.out.printf("cc: %d\n", sedan.cc); // Car 설계도로 만든 인스턴스 변수
     System.out.println("-------------------------");
@@ -21,6 +21,7 @@ public class Exam0410 {
     truck.cc = 10000;
 
     printSedan(sedan);
+  
 
     // printSedan()의 파라미터는 Sedan 객체의 주소만 받을 수 있다.
     // 그래서 Truck 객체를 전달할 수 없다.

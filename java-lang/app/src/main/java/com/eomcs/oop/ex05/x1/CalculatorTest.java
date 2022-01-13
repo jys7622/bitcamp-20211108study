@@ -1,12 +1,13 @@
-package com.eomcs.oop.ex05.x1.test1;
+package com.eomcs.oop.ex05.x1;
 
+// 계산기 객체를 정의한 후 사용하기
 public class CalculatorTest {
   public static void main(String[] args) {
     Calculator c = new Calculator();
-    
-    c.plus(100); //인스턴스 메서드는 클래스이름으로 호출불가, 인스턴스 주소를 줘야함
+
+    c.plus(100);
     c.minus(200);
-    
+
     System.out.println(c.result);
   }
 }

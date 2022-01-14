@@ -17,7 +17,7 @@ public class Exam0120 {
     System.out.printf("폴더명: %s\n", currentDir.getName());
     System.out.printf("경로: %s\n", currentDir.getPath());
     System.out.printf("절대경로: %s\n", currentDir.getAbsolutePath());
-    System.out.printf("계산된 절대경로: %s\n", currentDir.getCanonicalPath());
+    System.out.printf("계산된 절대경로: %s\n", currentDir.getCanonicalPath()); // ..경로에 대한 계산이 끝난 결과값 리턴.
 
     System.out.printf("총크기: %d\n", currentDir.getTotalSpace());
     System.out.printf("남은크기: %d\n", currentDir.getFreeSpace());

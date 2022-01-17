@@ -15,8 +15,8 @@ public static void main(String[] args) {
  System.out.println("-------------");
  Suv suv = new Suv();
  SnowChain snowChain2 = new SnowChain(suv);
- BlackBox blackBox2 =  new BlackBox(suv);
- testCar(snowChain2);
+ BlackBox blackBox2 =  new BlackBox(snowChain2);
+
  testCar(blackBox2);
  
 }

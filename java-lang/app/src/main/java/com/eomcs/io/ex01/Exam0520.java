@@ -18,7 +18,7 @@ public class Exam0520 {
     for (File file : files) {
       System.out.printf("%s   %s %12d %s\n",
           file.isDirectory() ? "d" : "-",
-              new Date(file.lastModified()),
+              new Date(file.lastModified()), //java.sql date는 java.util date의 서브클래스다.
               file.length(),
               file.getName());
     }

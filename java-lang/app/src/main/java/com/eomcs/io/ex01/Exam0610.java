@@ -27,14 +27,15 @@ public class Exam0610 {
       }
     }
 
-    File dir = new File(".");
+    File dir = new File("."); // 현재 폴더 만들기
 
     // => 확장자가 .java 인 파일의 이름만 추출하기
     // 1) 필터 준비
     JavaFilter javaFilter = new JavaFilter();
 
     // 2) 필터를 사용하여 디렉토리의 목록을 가져오기
-    String[] names = dir.list(javaFilter);
+ // filenameFilter라는 규칙에 따라 만든 필터를 파라미터로 안주면 모든 디렉토리와, 파일을 리턴한다.
+    String[] names = dir.list(javaFilter); 
 
     for (String name : names) {
       System.out.println(name);

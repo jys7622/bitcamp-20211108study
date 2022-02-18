@@ -1,24 +1,9 @@
 <mxfile host="65bd71144e">
     <diagram id="GYCarYSJkYalMBhNIcP4" name="Page-1">
-        <mxGraphModel dx="1230" dy="433" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="1390" math="0" shadow="0">
+        <mxGraphModel dx="557" dy="348" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="980" pageHeight="1390" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="378" value="FilenameFilter" style="whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
-                    <mxGeometry x="340" y="150" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="381" value="" style="endArrow=classic;html=1;sketch=1;" edge="1" parent="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="350" y="250" as="sourcePoint"/>
-                        <mxPoint x="460" y="250" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="382" value="call" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="385" y="230" width="30" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="383" value="App" style="whiteSpace=wrap;html=1;sketch=1;" vertex="1" parent="1">
-                    <mxGeometry x="120" y="230" width="120" height="60" as="geometry"/>
-                </mxCell>
             </root>
         </mxGraphModel>
     </diagram>

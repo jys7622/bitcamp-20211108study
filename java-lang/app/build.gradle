@@ -57,6 +57,11 @@ eclipse {
     project {
         name = "java-lang"
     }
+        jdt{
+        sourceCompatibility = 11
+        targetCompatibility = 11
+        javaRuntimeName = "JavaSE-11"
+    }
 }
 
 

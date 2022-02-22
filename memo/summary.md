@@ -1740,3 +1740,34 @@ A3의 객체주소가 넘어왔다. 때문에 A3의 m()을 호출한 것이다.
   - 상수 필드(변수)는 보통 static 필드(변수)로 만든다
   static final int v1 = 100;
   - 파라미터에도 final을 붙일 수 있다. 
+
+# 2022년 02월 21일
+## mysql
+  - 컬럼의 기본값을 설정하면 입력을 생략했을 때 기본값이 자동으로 입력된다.
+  ex) create table test1(
+    no int not null,
+    name varchar(20) default 'basic'
+    age int default 20
+  );
+  insert into test1(no) values(1);
+  -> 테이블에는 no 값에 1, 입력을 생략한 name과 age에는 default 값으로 설정한 basic과 20이 자동으로 입력된다.
+  - not null은 필수입력 항목이며 생략할 수 없다.
+
+- 데이터 타입 nemeric(= decimal)은 numeric(n,e)의 형식으로 사용된다.
+- 전체 n자리 숫자중 e는 소숫점 이하의 자릿수를 의미한다
+ex) 컬럼명 numeric(6,2)는 전체 6자리 숫자중 정수 4자리, 소수점 이하 2자리를 뜻한다.
+- 최대 자릿수를 초과하는 정수를 입력할 시 오류가 발생하며, 소숫점 이하 자릿수를 초과하는 수를 입력할 때에는 반올림된 숫자가 입력된다.
+
+## 키 컬럼 지정
+- key
+  - 데이터를 구분할 때 사용하는 컬럼들의 집합
+
+- candidate key(후보키 = 최소키)
+  - key들 중에서 최소 항목으로 줄인 키 
+
+- primary key(주키)
+  - candidate key 중에서 dbms관리자가 사용하기로 결정한 키
+  - primary key를 제외한 candidate key는 alterante key가 된다.
+  - priamary key로 지정된 컬럼은 중복입력할 수 없다.
+- alternate key(대안 키)
+  -  primary key는 아니지만 primary key처럼 데이터를 구분하는 용도로 사용할 수 있다.

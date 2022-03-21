@@ -1,18 +1,24 @@
 package com.eomcs.mylist.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallback;
+import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.eomcs.mylist.dao.ContactDao;
 import com.eomcs.mylist.domain.Contact;
 import com.eomcs.mylist.domain.ContactTel;
+import com.eomcs.mylist.service.ContactService;
 
 @RestController 
 public class ContactController {
-
   @Autowired
-  ContactDao contactDao;
+  ContactService contactService;
+  
+
 
   @RequestMapping("/contact/list")
   public Object list() {
@@ -25,16 +31,48 @@ public class ContactController {
 
   @RequestMapping("/contact/add")
   public Object add(Contact contact, String[] tel) throws Exception {
-    contactDao.insert(contact);
-    for (int i = 0; i < tel.length; i++) {
+    
+    
+  //요청 파라미터 분석 및 가공
+    ArrayList<ContactTel> telList = new ArrayList<>();
+    for (int  i= 0; i <tel.length; i++) {
       String[] value = tel[i].split("_");
       if (value[1].length() == 0) {
         continue;
       }
-      contactDao.insertTel(new ContactTel(contact.getNo(), Integer.parseInt(value[0]), value[1]));
+      ContactTel contactTel = new ContactTel(Integer.parseInt(value[0]), value[1]);
+      telList.add(tel);
     }
-    return 1;
+      
+    
+    contact.setTels(telList);
+    // 서비스 객체 실행
+  return contactService.add(contact);
+  
+/*
+    // 1) 트랜잭션으로 묶어서 실행할 작업을 정의
+    // => 스프링 프레임워크에서 정한 규칙에 따라 정의해야 한다.
+    class ContactAddTransaction implements TransactionCallback {
+      @Override
+      public Object doInTransaction(TransactionStatus status) {
+        // 트랜잭션으로 묶어서 할 작업을 기술한다.
+        contactDao.insert(contact);
+        for (int i = 0; i < tel.length; i++) {
+          String[] value = tel[i].split("_");
+          if (value[1].length() == 0) {
+            continue;
+          }
+          contactDao.insertTel(new ContactTel(contact.getNo(), Integer.parseInt(value[0]), value[1]));
+        }
+        return 1;
+      }
+    }
+
+    // 2) 트랜잭션 작업을 수행한다.
+    return transactionTemplate.execute(new ContactAddTransaction());
+
   }
+*/
 
   @RequestMapping("/contact/get")
   public Object get(int no) {

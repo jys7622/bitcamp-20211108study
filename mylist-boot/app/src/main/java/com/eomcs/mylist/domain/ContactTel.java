@@ -8,15 +8,14 @@ public class ContactTel {
 
   public ContactTel() {}
 
-  public ContactTel(int telTypeNo,  String tel) {
+  public ContactTel(int telTypeNo, String tel) {
     this.telTypeNo = telTypeNo;
     this.tel = tel;
   }
-  
+
   public ContactTel(int contactNo, int telTypeNo, String tel) {
     this(telTypeNo, tel);
     this.contactNo = contactNo;
-
   }
 
   @Override

@@ -26,31 +26,11 @@ spring.datasource.password=1111
 
 
 ## 프론트엔드 개발 실습
--- 전화번호 유형
-create table ml_tel_type(
-  tt_no int not null,
-  title varchar(20) not null
-);
 
-alter table ml_tel_type
-add constraint primary key (tt_no),
-modify column tt_no int not null auto_increment;
 
--- 연락처 전화번호
-create table ml_cont_tel(
-  ct_no int not null, -- 전화번호 PK
-  contact_no int not null, -- 연락처 PK
-  tt_no int not null, --  전화번호 유형 PK
-  tel varchar(20) not null -- 전화번호
-);
 
-alter table ml_cont_tel
-add constraint primary key (ct_no),
-modify column ct_no int not null auto_increment;
 
-alter table ml_cont_tel
-  add constraint ml_cont_tel_fk1 
-    foreign key (contact_no) references ml_contact(contact_no),
-  add constraint ml_cont_tel_fk2
-    foreign key (tt_no) references ml_tel_type(tt_no);
+
+
+
 #
